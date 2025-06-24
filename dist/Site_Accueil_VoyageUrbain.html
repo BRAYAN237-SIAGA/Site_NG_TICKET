@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site_Accueil_VoyageUrbain</title>
+</head>
+<link rel="stylesheet" href="Site_Accueil_VoyageUrbain.css">
+<body>
+        <header>
+        <nav>
+            <div class="logo">
+                <a href="Page_couverture.html">NG Ticket</a>
+            </div>
+            
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            
+            <div class="nav-links" id="nav-links">
+                <a href="Site_Accueil_VoyageUrbain.html">Bus</a>
+                <a href="Site_admin.html">Destination</a>
+                <a href="Categorie.html">Categorie</a>
+                <a href="Message$Commentaire.html">Message & Commentaire</a>
+                <a href="Visualisation.html" >Visualisation</a>
+            </div>
+        </nav>
+    </header>
+
+         <button id="nom"></button>
+    
+        <div class="tab-content active">
+        <!-- 7 divs avec labels et inputs -->
+        <div class="input-container" >
+            <p>Information 1</p>
+            <div class="input-pair">
+                <div class="input-group">
+                    <p>Etat du ticket</p>
+                    <input type="text" placeholder="Etat de ticket 1" id="etat_value">
+                </div>
+            </div>
+        </div>
+
+        <div class="input-container" >
+            <p>Information 2</p>
+            <div class="input-pair">
+                <div class="input-group">
+                    <p>Immatriculation</p>
+                    <input type="text" placeholder="Immatriculation" id="input_1" >
+                </div>
+                <div class="input-group">
+                    <p>Categorie</p>
+                    <input type="text" placeholder="Categorie" id="value_categorie">
+                </div>
+            </div>
+        </div>
+
+        <div class="input-container" >
+            <p>Information 3</p>
+            <div class="input-pair">
+                <div class="input-group">
+                    <p>Chauffeur</p>
+                    <input type="text" placeholder="Chauffeur"  id="input_0">
+                </div>
+                <div class="input-group">
+                    <p>Trajet</p>
+                    <input type="text" placeholder="Trajet" id="value_trajet">
+                </div>
+            </div>
+        </div>
+
+        <div class="input-container" >
+            <p>Information 4</p>
+            <div class="input-pair">
+                <div class="input-group">
+                    <p>Ville depart</p>
+                    <input type="text" placeholder="Ville depart" id="select_1">
+                </div>
+                <div class="input-group">
+                    <p>Quartier depart</p>
+                    <input type="text" placeholder="Quartier depart" id="select_2">
+                </div>
+            </div>
+        </div>
+
+        <div class="input-container" >
+            <p>Information 5</p>
+            <div class="input-pair">
+                <div class="input-group">
+                    <p>Ville d'arrive</p>
+                    <input type="text" placeholder="Ville d'arrive" id="select_3">
+                </div>
+                <div class="input-group">
+                    <p>Quartier d'arrive</p>
+                    <input type="text" placeholder="Quartier d'arrive" id="select_4">
+                </div>
+            </div>
+        </div>
+
+        <div class="input-container" >
+            <p>Information 6</p>
+            <div class="input-pair">
+                <div class="input-group">
+                    <p>Prix ticket</p>
+                    <input type="number" placeholder="Prix ticket" id="prix_ticket" >
+                </div>
+                <div class="input-group">
+                    <p>Heure depart</p>
+                    <input type="time" placeholder="Heure depart" id="heure">
+                </div>
+            </div>
+        </div>
+
+        <div class="input-container" >
+            <p>Information 7</p>
+            <div class="input-pair">
+                <div class="input-group">
+                    <p>Nombre siege</p>
+                    <input type="number" placeholder="Nombre siege" id="siege">
+                </div>
+                <div class="input-group">
+                    <p>Date voyage</p>
+                    <input type="date" placeholder="Date voyage" id="date_voyage">
+                </div>
+            </div>
+        </div>
+
+        <div class="submit-container">
+            <button type="button" class="submit-btn" id="submitBtn">Enregistrer</button>
+        </div>
+
+        <!-- Popup de résultats -->
+        <div id="resultPopup" class="result-popup">
+            <div class="popup-content">
+                <h3>Résumé des informations</h3>
+                <div id="resultContent"></div>
+                <button class="submit-btn" id="confirmSubmit">Envoyer</button>
+                <button class="close-btn">Fermer</button>
+            </div>
+        </div>
+    </div>     
+        
+    <script defer src="bunble_Site_Accueil_VoyageUrbain.js">
+    </script>
+</body>
+</html>

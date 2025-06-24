@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORMULAIRE D'INSCRIPTION</title>
+    <link rel="stylesheet" href="Formulaire.css">
+</head>
+<body>
+    <header>
+        <nav class="form-nav">
+            <div class="logo">
+                <a href="Page_couverture.html">NG Ticket</a>
+            </div>
+            <div class="nav-links">
+                <a href="Page_couverture.html" class="back-home">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Retour à l'accueil</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+    <main class="form-container">
+        <div class="form-card">
+            <h1>Créer un compte</h1>
+            <p class="form-subtitle">Rejoignez notre communauté d'agence</p>
+            
+            <form id="registerForm" class="auth-form">
+                <div class="form-group">
+                    <p for="prenom">Nom de l'agence *</p>
+                    <input type="text" id="agence" name="prenom" required>
+                </div>
+                
+                <div class="form-group">
+                    <p for="nom">Nom du promoteur *</p>
+                    <input type="text" id="promoteur" name="nom" required>
+                </div>
+                
+                <div class="form-group">
+                    <p for="email">Email *</p>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <p for="telephone">Téléphone *</p>
+                    <input type="tel" id="telephone" name="telephone" required>
+                </div>
+                
+                <div class="form-group">
+                    <p for="adresse">Date d'inscription*</p>
+                    <input type="date" id="date" name="adresse">
+                </div>
+                
+                <div class="form-group">
+                    <p for="ville">Ville*</p>
+                    <input type="text" id="ville" name="ville">
+                </div>
+                
+                <div class="form-group">
+                    <p for="pays">Pays *</p>
+                    <select id="pays" name="pays" required>
+                        <option value="">Sélectionnez un pays</option>
+                        <option value="Cameroun">Cameroun</option>
+                        <option value="Senegal">Senegal</option>
+                        <option value="Cote ivoire">Cote ivoire</option>
+                        <option value="Gabon">Gabon</option>
+                        <option value="Benin">Benin</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <p for="password">Mot de passe *</p>
+                    <div class="password-input">
+                        <input type="password" id="motpasse"  required>
+                        
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <p for="confirm-password">Confirmer le mot de passe *</p>
+                    <div class="password-input">
+                        <input type="password" id="confirmmotpasse"required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <p for="ville1">Ville d'act 1 *</p>
+                    <input type="text" id="villed" name="ville1" required>
+                </div>
+                <div class="form-group">
+                    <p for="ville2">Ville d'act 2 *</p>
+                    <input type="text" id="villea" name="ville2" required>
+                </div>
+                <div class="form-group">
+                    <p for="ville3">Ville d'act 3 *</p>
+                    <input type="text" id="villed2" name="ville3" required>
+                </div>
+                <div class="form-group">
+                    <p for="ville4">Ville d'act 4 *</p>
+                    <input type="text" id="villea2" name="ville4" required>
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <p for="terms">J'accepte les <a href="#">conditions d'utilisation</a> et la <a href="#">politique de confidentialité</a> *</p>
+                </div>
+                
+                <button type="submit" class="btn-primary btn-block"  id="creer">S'inscrire</button>
+                
+                <p class="form-footer">Déjà inscrit ? : <a href="Connection.html">Connectez-vous ici</a></p>
+            </form>
+        </div>
+    </main>
+        <script src="bunble_formulaire.js" defer ></script>
+      <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  emailjs.init("cKk2lRbauj7dEMLoK"); // à mettre après avoir copié depuis EmailJS
+</script>
+</body>
+</html>

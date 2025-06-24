@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message$Commentaire</title>
+    <link rel="stylesheet" href="Message$Commentaire.css">
+</head>
+<body>
+            <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html">NG Ticket</a>
+            </div>
+            
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            
+            <div class="nav-links" id="nav-links">
+                <a href="Site_Accueil_VoyageUrbain.html">Bus</a>
+                <a href="Site_admin.html">Destination</a>
+                <a href="Categorie.html">Categorie</a>
+                <a href="Message$Commentaire.html">Message & Commentaire</a>
+                <a href="Visualisation.html" >Visualisation</a>
+            </div>
+        </nav>
+    </header>
+    <Button id="nom"></Button>
+    
+    <div class="tab-content">
+        <!-- Deux textareas avec boutons -->
+        <div class="textarea-container">
+            <label>Message notification</label>
+            <textarea rows="4" id="message" placeholder="Entrez le message qui vous voulez afficher dans le cadre messagerie"></textarea>
+            <button class="send-btn" data-id="1">Envoyer message</button>
+        </div>
+
+        <div class="textarea-container">
+            <label>Commentaire</label>
+            <textarea   id="commentaire" placeholder="Entrez le commentaire qui vous voulez afficher dans la partie commentaire"></textarea>
+            <button class="send-btn2" data-id="2">Envoyer commentaire</button>
+        </div>
+
+        <!-- Popup pour afficher le message -->
+        <div id="messagePopup" class="message-popup">
+            <div class="popup-content">
+                <h3 id="messageTitle"></h3>
+                <p id="messageContent"></p>
+                <button class="submit-btn" id="confirmMessage">Envoyer</button>
+                <button class="close-btn">Fermer</button>
+            </div>
+        </div>
+        <div id="messagePopup2" class="message-popup2">
+            <div class="popup-content2">
+                <h3 id="messageTitle2"></h3>
+                <p id="messageContent2"></p>
+                <button class="submit-btn2" id="confirmMessage2">Envoyer</button>
+                <button class="close-btn2">Fermer</button>
+            </div>
+        </div>
+    </div>
+     
+    <script defer src="bunble_Message$Commentaire.js" ></script>
+</body>
+</html>

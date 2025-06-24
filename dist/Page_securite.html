@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page_securite</title>
+    <link rel="stylesheet" href="Page_securite.css">
+</head>
+<body>
+    <header>
+        <nav class="form-nav">
+            <div class="logo">
+                <a href="Page_couverture.html">NG Ticket</a>
+            </div>
+            <div class="nav-links">
+                <a href="Page_couverture.html" class="back-home">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Retour à l'accueil</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+        <main class="form-container">
+        <div class="form-card">
+            <h1>Page Restrainte a l'equipe NG_TICKET</h1>
+            <p class="form-subtitle">Cet espace est priveé et toutes tentatives d'adhesion sont interdites</p>
+            
+            <form id="loginForm" class="auth-form">                
+                <div class="form-group">
+                    <p for="login-password">Mot de passe *</p>
+                    <div class="password-input">
+                        <input type="password" id="motpasse" name="password" required>
+                        
+                    </div>
+                </div>                
+                <button type="submit" class="btn-primary btn-block" id="connecter">Continuer</button>
+            </form>
+        </div>
+    </main>
+<script src="bunble_Page_securite.js" defer></script>
+</body>
+</html>

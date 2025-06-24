@@ -1,0 +1,943 @@
+
+/* Variables de couleurs */
+:root {
+    /* Couleurs principales */
+    --primary: #F96A24;    /* Orange principal */
+    --primary-hover: #e05d1c; /* Orange plus foncé au survol */
+    --primary-light: #ffefe6; /* Orange très clair pour les fonds */
+    --secondary: #f5f5f7;  /* Gris très clair pour les arrière-plans */
+    --dark: #1a1a1a;      /* Noir profond pour le texte */
+    --dark-70: rgba(26, 26, 26, 0.7); /* Texte assombri */
+    --light: #FFFFFF;     /* Blanc pur */
+    --border: #e0e0e5;    /* Gris clair pour les bordures */
+    --border-hover: #c8c8cc; /* Bordure au survol */
+    --text: #33334d;      /* Gris très foncé bleuté pour le texte */
+    --text-light: #666680; /* Texte secondaire */
+    --error: #e74c3c;     /* Rouge pour les erreurs */
+    --error-light: #fde8e6; /* Rouge clair pour les fonds d'erreur */
+    --success: #2ecc71;   /* Vert pour les succès */
+    --success-light: #e8f9f0; /* Vert clair pour les fonds de succès */
+    --warning: #f39c12;   /* Orange pour les avertissements */
+    --info: #3498db;      /* Bleu pour les informations */
+    
+    /* Ombres */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --shadow-primary: 0 4px 14px -2px rgba(249, 106, 36, 0.3);
+    
+    /* Transitions */
+    --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Rayons de bordure */
+    --radius-sm: 4px;
+    --radius: 8px;
+    --radius-lg: 12px;
+    --radius-full: 9999px;
+    
+    /* Espacement */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space: 16px;
+    --space-md: 24px;
+    --space-lg: 32px;
+    --space-xl: 48px;
+    
+    /* Typographie */
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+}
+
+/* Reset et styles de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Import des polices Google */
+
+/* Reset et base */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    color: var(--text);
+    background-color: var(--secondary);
+    font-size: 16px;
+    font-weight: 400;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Conteneur principal */
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 120px);
+    padding: 40px 20px;
+}
+
+/* Carte du formulaire */
+.form-card {
+    background: var(--light);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    width: 100%;
+    max-width: 460px;
+    padding: var(--space-xl);
+    margin: var(--space) auto;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: var(--transition-slow);
+}
+
+/* Effet de profondeur au survol */
+.form-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Décoration subtile */
+.form-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), #ff8c5a);
+}
+
+/* En-tête du formulaire */
+.form-card h1 {
+    color: var(--dark);
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: var(--space-sm);
+    text-align: center;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+}
+
+.form-subtitle {
+    color: var(--text-light);
+    text-align: center;
+    margin-bottom: var(--space-lg);
+    font-size: 1.05rem;
+    font-weight: 400;
+    line-height: 1.6;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Champs de formulaire - Style amélioré */
+.form-group {
+    margin-bottom: var(--space-md);
+    width: 100%;
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+}
+
+.form-group p {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--dark-70);
+    font-size: 0.9375rem;
+}
+
+/* Conteneur des champs */
+.form-fields {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+/* Pour les écrans plus larges */
+@media (min-width: 768px) {
+    .form-group {
+        flex: 1 1 calc(50% - 0.75rem);
+        min-width: 280px;
+    }
+    
+    .form-group.wide {
+        flex: 1 1 100%;
+    }
+}
+
+/* Pour les petits écrans */
+@media (max-width: 767px) {
+    .form-group {
+        width: 100%;
+    }
+}
+
+/* Champs de formulaire - Style de base */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="date"],
+select,
+textarea {
+    display: block;
+    width: 80%;
+    max-width: 600px;
+    padding: 0 15px;
+    font-size: 0.95rem;
+    font-weight: 400;
+    line-height: 25px;
+    color: var(--text);
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    height: 25px;
+    margin: 0 auto 15px;
+}
+
+/* Style pour les selects */
+select {
+    padding-right: 35px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23666680' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px 12px;
+    cursor: pointer;
+}
+
+/* Style pour les textarea */
+textarea {
+    min-height: 100px;
+    padding: 10px 15px;
+    line-height: 1.5;
+    resize: vertical;
+}
+
+/* Style pour les champs au focus */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="tel"]:focus,
+input[type="date"]:focus,
+select:focus,
+textarea:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Style au survol */
+.form-control:not(:disabled):not(.error):hover {
+    border-color: var(--primary);
+    box-shadow: 0 4px 12px rgba(249, 106, 36, 0.15);
+}
+
+/* Style au focus */
+.form-control:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(249, 106, 36, 0.2);
+    transform: translateY(-1px);
+}
+
+/* Style pour les selects */
+select.form-control {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%23666680' viewBox='0 0 24 24'%3E%3Cpath d='M6 9l6 6 6-6' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 24px center;
+    background-size: 16px 16px;
+    padding-right: 54px;
+    cursor: pointer;
+}
+
+/* Style pour les options des selects */
+select option {
+    padding: 8px 15px;
+    border-radius: 4px;
+    margin: 2px 0;
+}
+
+/* Style pour les textarea */
+textarea.form-control {
+    min-height: 170px; /* 80% plus grand */
+    resize: vertical;
+    padding: 24px 30px; /* Augmenté */
+    line-height: 1.8; /* Meilleure lisibilité */
+    border-radius: 30px; /* Coins plus arrondis */
+    transition: all 0.3s ease;
+    font-size: 1.2rem; /* Taille de police augmentée */
+}
+
+textarea.form-control:focus {
+    min-height: 160px;
+}
+
+/* Style pour les champs de mot de passe */
+.password-input {
+    position: relative;
+    width: 80%;
+    max-width: 600px;
+    margin: 0 auto 15px;
+}
+
+.password-input input[type="password"],
+.password-input input[type="text"] {
+    width: 100%;
+    margin: 0;
+    padding-right: 35px; /* Espace pour l'icône */
+}
+
+.password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #6c757d;
+    color: var(--text-light);
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px; /* Augmenté */
+    height: 52px; /* Augmenté */
+    font-size: 1.5rem; /* Taille d'icône augmentée */
+    opacity: 0.8;
+}
+
+.password-toggle:hover {
+    background-color: var(--secondary);
+    color: var(--primary);
+}
+
+.password-toggle:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(249, 106, 36, 0.3);
+}
+
+.password-toggle i {
+    font-size: 1.1rem;
+    transition: var(--transition);
+}
+
+/* Style pour les champs en focus */
+.form-control:focus {
+    color: var(--text);
+    background-color: var(--light);
+    border-color: var(--primary);
+    outline: 0;
+    box-shadow: 0 0 0 3px rgba(249, 106, 36, 0.2);
+    transform: translateY(-1px);
+}
+
+/* Style pour les champs désactivés et en lecture seule */
+.form-control:disabled,
+.form-control[readonly] {
+    background-color: #f8f9fa;
+    border-color: #e9ecef;
+    color: #6c757d;
+    cursor: not-allowed;
+    opacity: 1;
+    box-shadow: none;
+}
+
+/* Groupe de mot de passe amélioré */
+.password-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-input .form-control {
+    padding-right: 48px;
+    width: 100%;
+}
+
+/* Style amélioré pour le bouton de bascule du mot de passe */
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: var(--text-light);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    z-index: 5;
+    width: 36px;
+    height: 36px;
+}
+
+.toggle-password:hover {
+    color: var(--primary);
+    background-color: rgba(0, 0, 0, 0.04);
+}
+
+.toggle-password:focus {
+    outline: none;
+    color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(249, 106, 36, 0.15);
+}
+
+.toggle-password i {
+    font-size: 1.1em;
+    transition: transform 0.2s ease;
+}
+
+.toggle-password.active i {
+    color: var(--primary);
+}
+
+/* Indicateur de force du mot de passe */
+.password-strength {
+    height: 4px;
+    background-color: #e9ecef;
+    border-radius: 2px;
+    margin-top: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+.password-strength::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    background-color: #e74c3c;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.password-strength.weak::after {
+    width: 30%;
+    background-color: #e74c3c;
+}
+
+.password-strength.medium::after {
+    width: 60%;
+    background-color: #f39c12;
+}
+
+.password-strength.strong::after {
+    width: 100%;
+    background-color: #2ecc71;
+}
+
+/* Texte d'aide pour le mot de passe */
+.password-hint {
+    font-size: 0.8125rem;
+    color: var(--text-light);
+    margin-top: 6px;
+    line-height: 1.4;
+}
+
+.password-hint.valid {
+    color: var(--success);
+}
+
+.password-hint.invalid {
+    color: var(--error);
+}
+
+/* Case à cocher */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    margin: 15px 0 25px;
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+}
+
+/* Boutons */
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 32px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 2px solid transparent;
+    border-radius: 50px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    height:50px;
+    width: 80%;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Effet de fond animé */
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, var(--primary), #ff8c5a);
+    z-index: -1;
+    transition: opacity 0.3s ease;
+    opacity: 1;
+}
+
+.btn:hover::after {
+    opacity: 0.9;
+}
+
+/* Bouton principal */
+.btn-primary {
+    color: #fff;
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(249, 106, 36, 0.3);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(249, 106, 36, 0.3);
+}
+
+/* Bouton principal */
+.btn-primary {
+    color: var(--light);
+    background-color: var(--primary);
+    border-color: var(--primary);
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+    box-shadow: 0 8px 25px rgba(249, 106, 36, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Bouton secondaire */
+.btn-secondary {
+    color: var(--dark);
+    background-color: var(--secondary);
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(249, 106, 36, 0.1);
+    border-color: var(--primary-hover);
+    color: var(--primary-hover);
+}
+
+/* Bouton plein largeur */
+.btn-block {
+    display: flex;
+    width: 100%;
+    max-width: 320px;
+    margin: 25px auto;
+    justify-content: center;
+}
+
+/* Effet de vague au clic */
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%, -50%);
+    transform-origin: 50% 50%;
+}
+
+.btn:focus:not(:active)::after {
+    animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(30, 30);
+        opacity: 0;
+    }
+}
+
+/* Bouton primaire */
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    width: 100%;
+    font-size: 1.05rem;
+    letter-spacing: 0.3px;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(249, 106, 36, 0.3);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(249, 106, 36, 0.3);
+}
+
+/* Bouton secondaire */
+.btn-outline {
+    background-color: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+}
+
+.btn-outline:hover {
+    background-color: rgba(249, 106, 36, 0.1);
+}
+
+/* Bouton en bloc */
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+/* Bouton désactivé */
+.btn:disabled,
+.btn.disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    pointer-events: none;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Animation de chargement */
+.btn.loading {
+    position: relative;
+    color: transparent;
+    pointer-events: none;
+}
+
+.btn.loading::before {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Effet de vague au clic */
+.btn-ripple {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.7);
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(2.5);
+        opacity: 0;
+    }
+}
+/* Séparateur */
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 25px 0;
+    color: #777;
+    font-size: 0.9rem;
+}
+
+.separator::before,
+.separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #ddd;
+}
+
+.separator:not(:empty)::before {
+    margin-right: 1em;
+}
+
+.separator:not(:empty)::after {
+    margin-left: 1em;
+}
+
+/* Messages d'erreur et états */
+.error-message {
+    color: var(--error);
+    font-size: 0.85rem;
+    margin-top: 6px;
+    display: block;
+    font-weight: 500;
+    line-height: 1.4;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    transition: opacity 0.3s ease, height 0.3s ease;
+}
+
+.form-control.error {
+    border-color: var(--error);
+    padding-right: 50px;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23e74c3c' viewBox='0 0 24 24'%3e%3cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 20px center;
+    background-size: 20px 20px;
+    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+@keyframes shake {
+    10%, 90% { transform: translate3d(-1px, 0, 0); }
+    20%, 80% { transform: translate3d(2px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-3px, 0, 0); }
+    40%, 60% { transform: translate3d(3px, 0, 0); }
+}
+
+.form-control.valid {
+    border-color: var(--success);
+    padding-right: 40px;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%232ecc71' viewBox='0 0 12 12'%3e%3cpath d='M10 3L4.5 8.5 2 6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px 16px;
+}
+
+.form-group.error .error-message {
+    opacity: 1;
+    height: auto;
+    margin-top: 8px;
+}
+
+/* Style pour les champs requis */
+.form-group.required label::after {
+    content: ' *';
+    color: var(--error);
+    margin-left: 2px;
+}
+
+/* Navigation du formulaire */
+.form-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space) 5%;
+    background-color: var(--light);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    z-index: 10;
+}
+
+.form-nav .logo a {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--dark);
+    text-decoration: none;
+}
+
+/* Style pour le bouton de retour */
+.back-home {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: 10px 16px;
+    background-color: transparent;
+    color: var(--primary);
+    border: 1.5px solid var(--primary);
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    text-decoration: none;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+}
+
+.back-home:hover {
+    background-color: var(--primary-light);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow);
+}
+
+.back-home:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+}
+
+.back-home i {
+    font-size: 0.9em;
+    transition: transform 0.2s ease;
+}
+
+.back-home:hover i {
+    transform: translateX(-2px);
+}
+
+/* Styles pour les très petits écrans (téléphones en mode portrait) */
+@media (max-width: 480px) {
+    .form-card {
+        padding: var(--space);
+        margin: var(--space-xs);
+        border-radius: var(--radius);
+    }
+    
+    .form-group {
+        margin-bottom: var(--space);
+    }
+    
+    .form-control {
+        padding: 12px 14px;
+        height: 48px;
+        font-size: 1rem;
+    }
+    
+    .btn {
+        height: 48px;
+        padding: 0 var(--space);
+    }
+}
+
+/* Styles pour les petits écrans (téléphones en mode paysage) */
+@media (min-width: 481px) and (max-width: 768px) {
+    .form-card {
+        padding: var(--space-lg) var(--space);
+        margin: var(--space-sm);
+        border-radius: var(--radius-lg);
+    }
+    
+    .form-card h1 {
+        font-size: 1.625rem;
+        margin-bottom: var(--space-xs);
+    }
+    
+    .form-subtitle {
+        font-size: 1rem;
+        margin-bottom: var(--space-md);
+    }
+    
+    .form-control {
+        height: 48px;
+    }
+    
+    .btn {
+        height: 48px;
+    }
+}
+
+/* Styles pour les tablettes */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .form-card {
+        max-width: 600px;
+        margin: var(--space-lg) auto;
+        padding: var(--space-xl);
+    }
+    
+    .form-card h1 {
+        font-size: 1.75rem;
+    }
+}
+
+/* Styles pour les ordinateurs portables */
+@media (min-width: 1025px) and (max-width: 1599px) {
+    .form-card {
+        max-width: 500px;
+        margin: var(--space-xl) auto;
+    }
+}
+
+/* Styles pour les grands écrans */
+@media (min-width: 1600px) {
+    .form-card {
+        max-width: 500px;
+        margin: 40px auto;
+    }
+}
+
+/* Styles communs pour les écrans mobiles */
+@media (max-width: 768px) {
+    .back-home span {
+        display: none;
+    }
+    
+    .back-home i {
+        margin: 0;
+        font-size: 1.1em;
+    }
+    
+    .form-nav {
+        padding: 15px 20px;
+    }
+}

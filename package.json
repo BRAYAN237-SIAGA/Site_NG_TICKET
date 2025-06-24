@@ -1,0 +1,22 @@
+{
+  "name": "ng_travel",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "ngongang": "webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "emailjs-com": "^3.2.0",
+    "firebase": "^11.6.0"
+  },
+  "devDependencies": {
+    "webpack": "^5.99.6",
+    "webpack-cli": "^6.0.1"
+  }
+}

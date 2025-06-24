@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categorie</title>
+    <link rel="stylesheet" href="categorie.css">
+</head>
+<body>
+            <header>
+        <nav>
+            <div class="logo">
+                <a href="Page_couverture.html">NG Ticket</a>
+            </div>
+            
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            
+            <div class="nav-links" id="nav-links">
+                <a href="Site_Accueil_VoyageUrbain.html">Bus</a>
+                <a href="Site_admin.html">Destination</a>
+                <a href="Categorie.html">Categorie</a>
+                <a href="Message$Commentaire.html">Message & Commentaire</a>
+                <a href="Visualisation.html" >Visualisation</a>
+            </div>
+        </nav>
+    </header>
+            <Button id="nom"></Button>
+         <div class="tab-content active">
+        <!-- 7 divs avec labels et inputs -->
+        <div class="input-container" >
+            <p>Information 1</p>
+            <div class="input-pair">
+                <div class="input-group">
+                    <p>Nom de la categorie</p>
+                    <input type="text" placeholder="Nom de la categorie" id="nomcategorie">
+                </div>
+            </div>
+        </div>
+
+        <div class="submit-container">
+            <button type="button" class="submit-btn" id="submitBtn">Enregistrer</button>
+        </div>
+
+        <!-- Popup de résultats -->
+        <div id="resultPopup" class="result-popup">
+            <div class="popup-content">
+                <h3>Résumé des informations</h3>
+                <div id="resultContent"></div>
+                <button class="submit-btn" id="confirmSubmit">Envoyer</button>
+                <button class="close-btn">Fermer</button>
+            </div>
+        </div>
+    </div>
+    <script src="bunble_categorie.js" defer type="module"></script>
+</body>
+</html>

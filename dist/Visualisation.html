@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualisation</title>
+    <link rel="stylesheet" href="Visualisation.css">
+</head>
+<body>
+            <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html">NG Ticket</a>
+            </div>
+            
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            
+            <div class="nav-links" id="nav-links">
+                <a href="Site_Accueil_VoyageUrbain.html">Bus</a>
+                <a href="Site_admin.html">Destination</a>
+                <a href="Categorie.html">Categorie</a>
+                <a href="Message$Commentaire.html">Message & Commentaire</a>
+                <a href="Visualisation.html" >Visualisation</a>
+            </div>
+        </nav>
+    </header>
+    <Button id="nom"></Button>
+    <h3>BUS MIS EN LIGNE</h1>
+    
+    <div class="table-container">
+        <table id="tableau_1">
+        </table>
+    </div>
+    <div class="table-container">
+        <table id="tableau_user">
+        </table>
+    </div>
+    <h3>DESTINATION</h1>
+    <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Non agence</th>
+          <th>Ville depart</th>
+          <th>Ville arriver</th>
+          <th>Quartier depart</th>
+          <th>quartier arriver</th>
+          <th>Device</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="tbody_2">
+      </tbody>
+    </table>
+  </div>
+    <h3>CATEGORIE (S)</h1>
+    <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Non agence</th>
+          <th>Type categorie</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="tbody_3">
+      </tbody>
+    </table>
+  </div>
+    <h3>COMMENTAIRE ET MESSAGE</h1>
+    <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Texte</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="tbody_4">
+      </tbody>
+    </table>
+  </div>
+    <h3>COMMENTAIRE VOYAGEUR</h1>
+        <div class="table-container">
+  </div>
+    <div class="table-container">
+        <table id="tableau_5" >
+        </table>
+    </div>
+    <div class="table-container">
+        <table id="tableau_6" >
+        </table>
+    </div>
+    <div id="dialog" class="dialog">
+        <p>Etes vous sur de vouloir (le/la) supprimer </p>
+        <button id="annuler" class="btn">ANNULER</button>
+        <button id="acceder" class="btn">VALIDER</button>
+    </div>
+    <div id="dialog2" class="dialog2">
+        <p>Etes vous sur de vouloir ouvrir ce bus </p>
+        <button id="annuler2" class="btn2">ANNULER</button>
+        <button id="acceder2" class="btn2">VALIDER</button>
+    </div>
+    <div id="dialog3" class="dialog3">
+        <p>Etes vous sur de vouloir fermer ce bus </p>
+        <button id="annuler3" class="btn3">ANNULER</button>
+        <button id="acceder3" class="btn3">VALIDER</button>
+    </div>
+    <div id="dialog1" class="dialog1">
+        <p>ENREGISTREMENT DE VOYAGEUR </p>
+        <p>NOM VOYAGEUR</p>
+        <p><input type="text" id="nom_voyageur"></p>
+        <p>NUMERO DE TELEPHONE</p>
+        <p><input type="text" id="numero_voyageur"></p>
+        <p>NOMBRE DE PLACE (S)</p>
+        <p><input type="number" id="nombre_place" value="1" readonly></p>
+        <button id="annuler1" class="btn1">ANNULER</button>
+        <button id="acceder1" class="btn1">VALIDER</button>
+    </div>
+    <script src="bunble_Visualisation.js" defer type="module"></script>
+</body>
+</html>

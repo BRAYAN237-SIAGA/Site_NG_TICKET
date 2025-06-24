@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page_controle</title>
+    <link rel="stylesheet" href="Page_controle.css">
+</head>
+<body>
+            <header>
+        <nav>
+            <div class="logo">
+                <a href="Page_controle.html">NG Ticket</a>
+            </div>
+            
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            
+            <div class="nav-links" id="nav-links">
+                <a href="Page_controle.html">Controle</a>
+            </div>
+        </nav>
+    </header>
+
+        <div class="tab-content active">
+            <!-- 7 divs avec labels et inputs -->
+            <div class="input-container" >
+                <h3>Tableau de controle</h1>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nom agence</th>
+                                <th>Nom promoteur</th>
+                                <th>Email</th>
+                                <th>Ville</th>
+                                <th>Ville_depart1</th>
+                                <th>Ville_arriver1</th>
+                                <th>Ville_depart2</th>
+                                <th>Ville_arriver2</th>
+                                <th>Telephone</th>
+                                <th>Pays</th>
+                                <th>Date d'inscription</th>
+                                <th>Mot de passe</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody">  
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="input-container2" >
+            <p>Information 1</p>
+            <div class="input-pair">
+                <div class="input-group">
+                    <p>Nom de la ville</p>
+                    <input type="text" placeholder="Nom de la ville" id="nomville">
+                </div>
+            </div>
+            <div class="submit-container">
+            <button type="button" class="submit-btn" id="submitBtn">Enregistrer</button>
+        </div>
+        </div>
+
+        
+        <div class="input-container1" >
+            <div class="table-container">
+                <h3>CATEGORIE (S)</h1>
+                <table>
+                <thead>
+                    <tr>
+                    <th>NG_TICKET</th>
+                    <th>Ville</th>
+                    <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody_3">
+                </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="input-container1" >
+            <h3>DESTINATION</h1>
+    <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Non agence</th>
+          <th>Ville depart</th>
+          <th>Ville arriver</th>
+          <th>Quartier depart</th>
+          <th>quartier arriver</th>
+          <th>Device</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="tbody_2">
+      </tbody>
+    </table>
+  </div>
+        </div>
+
+        <!-- Popup de résultats -->
+        <div id="resultPopup" class="result-popup">
+            <div class="popup-content">
+                <h3>Résumé des informations</h3>
+                <div id="resultContent"></div>
+                <button class="submit-btn" id="confirmSubmit">Envoyer</button>
+                <button class="close-btn">Fermer</button>
+            </div>
+        </div>
+            <!-- Popup de résultats -->
+            <div id="dialog" class="dialog">
+            <p>Etes vous sur de vouloir accepter cette agence a utilise votre service </p>
+            <button id="annuler" class="btn">ANNULER</button>
+            <button id="acceder" class="btn">VALIDER</button>
+            </div>
+            <div id="dialog1" class="dialog1">
+            <p>Etes vous sur de vouloir bloquer cette agence a utilise votre service </p>
+            <button id="annuler1" class="btn1">ANNULER</button>
+            <button id="acceder1" class="btn1">VALIDER</button>
+            </div>
+            <div id="dialog2" class="dialog2">
+            <p>Etes vous sur de vouloir supprimer cette ville </p>
+            <button id="annuler2" class="btn2">ANNULER</button>
+            <button id="acceder2" class="btn2">VALIDER</button>
+            </div>
+            <div id="dialog3" class="dialog3">
+            <p>Etes vous sur de vouloir supprimer cette cette destination </p>
+            <button id="annuler3" class="btn3">ANNULER</button>
+            <button id="acceder3" class="btn3">VALIDER</button>
+            </div>
+        </div>
+    <script src="bunble_Page_controle.js" defer type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  emailjs.init("KpXE6Otgv0SmfP1IM"); // à mettre après avoir copié depuis EmailJS
+</script>
+</body>
+</html>

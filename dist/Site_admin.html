@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site_admin</title>
+    <link rel="stylesheet" href="Site_admin.css">
+</head>
+<body>
+            <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html">NG Ticket</a>
+            </div>
+            
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            
+            <div class="nav-links" id="nav-links">
+                <a href="Site_Accueil_VoyageUrbain.html">Bus</a>
+                <a href="Site_admin.html">Destination</a>
+                <a href="Categorie.html">Categorie</a>
+                <a href="Message$Commentaire.html">Message & Commentaire</a>
+                <a href="Visualisation.html" >Visualisation</a>
+            </div>
+        </nav>
+    </header>
+    <button id="nom"></button>
+         <div class="tab-content active">
+        <!-- 7 divs avec labels et inputs -->
+        <div class="input-container" >
+            <label>Information 1</label>
+            <div class="input-pair">
+                <div class="input-group">
+                    <label>Device de l'agence</label>
+                    <input type="text" placeholder="Device de l'agence" id="device">
+                </div>
+            </div>
+        </div>
+
+        <div class="input-container" >
+            <label>Information 2</label>
+            <div class="input-pair">
+                <div class="input-group">
+                    <label>Ville depart</label>
+                    <input type="text" placeholder="Ville depart" id="ville1" >
+                </div>
+                <div class="input-group">
+                    <label>Quartier depart</label>
+                    <input type="text" placeholder="Quartier depart" id="quartier1">
+                </div>
+            </div>
+        </div>
+
+        <div class="input-container" >
+            <label>Information 3</label>
+            <div class="input-pair">
+                <div class="input-group">
+                    <label>Ville arriver</label>
+                    <input type="text" placeholder="Ville arriver"  id="ville2">
+                </div>
+                <div class="input-group">
+                    <label>Quartier arriver</label>
+                    <input type="text" placeholder="Quartier arriver" id="quartier2">
+                </div>
+            </div>
+        </div>
+
+        <div class="submit-container">
+            <button type="button" class="submit-btn" id="submitBtn">Enregistrer</button>
+        </div>
+
+        <!-- Popup de résultats -->
+        <div id="resultPopup" class="result-popup">
+            <div class="popup-content">
+                <h3>Résumé des informations</h3>
+                <div id="resultContent"></div>
+                <button class="submit-btn" id="confirmSubmit">Envoyer</button>
+                <button class="close-btn">Fermer</button>
+            </div>
+        </div>
+    </div>
+
+        
+    <script defer src="bunble_Site_admin.js">
+    </script>
+</body>
+</html>

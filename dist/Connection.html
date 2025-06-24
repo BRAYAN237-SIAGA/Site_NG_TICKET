@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connection</title>
+    <link rel="stylesheet" href="Connection.css">
+</head>
+<body>
+    <header>
+        <nav class="form-nav">
+            <div class="logo">
+                <a href="Page_couverture.html">NG Ticket</a>
+            </div>
+            <div class="nav-links">
+                <a href="Page_couverture.html" class="back-home">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Retour à l'accueil</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+        <main class="form-container">
+        <div class="form-card">
+            <h1>Connexion</h1>
+            <p class="form-subtitle">Accédez à votre espace de travail</p>
+            
+            <form id="loginForm" class="auth-form">
+                <div class="form-group">
+                    <p for="login-email">Email *</p>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <p for="login-password">Mot de passe *</p>
+                    <div class="password-input">
+                        <input type="password" id="motpasse" name="password" required>
+                        
+                    </div>
+                </div>                
+                <button type="submit" class="btn-primary btn-block" id="connecter">Se connecter</button>
+                
+                <p class="form-footer">Vous n'avez pas de compte ? <a href="Formulaire.html">Inscrivez-vous ici</a></p>
+            </form>
+        </div>
+    </main>
+<script src="bunble_connection.js" defer></script>
+</body>
+</html>
