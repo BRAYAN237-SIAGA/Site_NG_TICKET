@@ -31,19 +31,40 @@ body {
 /* Boutons */
 .btn-primary {
     background-color: var(--orange);
-    color: var(--white);
-    border: none;
-    padding: 12px 25px;
-    border-radius: 30px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    text-decoration: none;
-    display: inline-block;
-    margin-right: 15px;
+      position: relative;
+  padding: 12px 24px;
+  font-size: 16px;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: background-color 0.3s;
+}
+.btn-primary .loader {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 18px;
+  height: 18px;
+  border: 3px solid #fff;
+  border-top: 3px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  transform: translate(-50%, -50%);
+}
+
+.btn-primary.loading .btn-text {
+  visibility: hidden;
+}
+
+.btn-primary.loading .loader {
+  display: block;
+}
+
+@keyframes spin {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
 .btn-secondary {

@@ -672,25 +672,30 @@ textarea.form-control:focus {
 }
 
 /* Animation de chargement */
-.btn.loading {
-    position: relative;
-    color: transparent;
-    pointer-events: none;
+.btn-primary .loader {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 18px;
+  height: 18px;
+  border: 3px solid #fff;
+  border-top: 3px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  transform: translate(-50%, -50%);
 }
 
-.btn.loading::before {
-    content: '';
-    position: absolute;
-    width: 24px;
-    height: 24px;
-    border: 3px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    border-top-color: #fff;
-    animation: spin 0.8s linear infinite;
+.btn-primary.loading .btn-text {
+  visibility: hidden;
+}
+
+.btn-primary.loading .loader {
+  display: block;
 }
 
 @keyframes spin {
-    to { transform: rotate(360deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
 /* Effet de vague au clic */

@@ -46,6 +46,13 @@ import emailjs from 'emailjs-com';
     const ville = document.getElementById("ville").value;
     const pays = document.getElementById("pays").value;
 
+     creer.classList.add('loading');
+
+  // Simulation d'un délai de traitement (ex: requête réseau)
+    setTimeout(() => {
+    creer.classList.remove('loading');
+    }, 3000);
+
     
       emailjs.init("cKk2lRbauj7dEMLoK");
 
@@ -106,8 +113,6 @@ import emailjs from 'emailjs-com';
         window.location.href ="Connection.html"
 
       });
-
-
         });  
 
 
@@ -115,7 +120,7 @@ import emailjs from 'emailjs-com';
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      alert(errorMessage)
+    alert('verifier votre connexion ou votre formulaire')
     });
   });
 

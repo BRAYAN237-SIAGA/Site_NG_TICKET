@@ -183,7 +183,7 @@ header nav {
     border-radius: 10px;
     margin-top: 85px;
 }
-.input-container1,.input-container2 {
+.input-container1,.input-container2,.input-container3,.input-container4 {
     margin: 20px;
     padding: 15px;
     background-color: #DCC9C2;
@@ -194,7 +194,7 @@ th{
     width: 95px;
 }
 
-.dialog,.dialog1,.dialog2,.dialog3 {
+.dialog,.dialog1,.dialog2,.dialog3,.dialog4,.dialog5 {
 	position: fixed;
 	top: 50%;
 	left: 50%;
@@ -207,7 +207,7 @@ th{
 	display: none;
 }
 
-.btn,.btn1,.btn2,.btn3 {
+.btn,.btn1,.btn2,.btn3,.btn4,.btn5 {
 	background-color: #E8E8E8;
 	color: black;
 	padding: 10px 20px;
@@ -216,16 +216,16 @@ th{
     font-weight: bold;
 	cursor: pointer;
 }
-.btn:hover,.btn1:hover,.btn2:hover,.btn3:hover {
+.btn:hover,.btn1:hover,.btn2:hover,.btn3:hover,.btn4:hover,.btn5:hover {
 	background-color: #E8E8E8;
 }
 
-#annuler,#annuler1,#annuler2 ,#annuler3{
+#annuler,#annuler1,#annuler2 ,#annuler3,#annuler4,#annuler5{
 	background-color: #F96A24;
     font-weight: bold;
 }
 
-#annuler:hover,#annuler1:hover,#annuler2:hover,#annuler3:hover {
+#annuler:hover,#annuler1:hover,#annuler2:hover,#annuler3:hover ,#annuler4:hover,#annuler5:hover {
 	background-color: #F96A24;
 }
 
@@ -262,12 +262,12 @@ th{
       }
     }
 
-    .submit-container {
+    .submit-container,.submit-container3,.submit-container4 {
     text-align: center;
     margin-top: 20px;
 }
 
-.submit-btn {
+.submit-btn,.submit-btn3,.submit-btn4 {
     padding: 10px 30px;
     background-color: #F96A24;
     color: white;
@@ -277,11 +277,11 @@ th{
     font-size: 1em;
 }
 
-.submit-btn:hover {
+.submit-btn:hover,.submit-btn3:hover,.submit-btn4:hover {
     background-color: #E05A1A;
 }
 
-.result-popup {
+.result-popup,.result-popup3,.result-popup4 {
     display: none;
     position: fixed;
     top: 0;
@@ -294,7 +294,7 @@ th{
     z-index: 1000;
 }
 
-.popup-content {
+.popup-content,.popup-content3 ,.popup-content4 {
     background-color: #FFFFFF;
     padding: 20px;
     border-radius: 10px;
@@ -305,20 +305,20 @@ th{
     border: 2px solid #F96A24;
 }
 
-.popup-content .submit-btn {
+.popup-content .submit-btn,.popup-content3 .submit-btn3 ,.popup-content4 .submit-btn4 {
     margin-right: 10px;
     background-color: #F96A24;
 }
 
-.popup-content .submit-btn:hover {
+.popup-content .submit-btn:hover,.popup-content3 .submit-btn3:hover,.popup-content4 .submit-btn4:hover {
     background-color: #E05A1A;
 }
 
-.popup-content .close-btn {
+.popup-content .close-btn,.popup-content3 .close-btn3,.popup-content4 .close-btn4 {
     background-color: #0F0604;
 }
 
-.result-item {
+.result-item,.result-item3 ,.result-item4{
     margin-bottom: 15px;
     padding-bottom: 15px;
     border-bottom: 1px solid #eee;
@@ -326,12 +326,12 @@ th{
     border-left: 3px solid #F96A24;
 }
 
-.result-item h4 {
+.result-item h4,.result-item3 h4,.result-item4 h4 {
     margin-top: 0;
     color: #F96A24;
 }
 
-.close-btn {
+.close-btn,.close-btn3,.close-btn4 {
     margin-top: 20px;
     padding: 8px 20px;
     background-color: #0F0604;
@@ -341,7 +341,7 @@ th{
     cursor: pointer;
 }
 
-.close-btn:hover {
+.close-btn:hover,.close-btn3:hover,.close-btn4:hover {
     background-color: #333;
 }
 
@@ -354,7 +354,7 @@ th{
     text-align: center;
     font-weight: bold;
 }
-.input-container ,.input-container1{
+.input-container ,.input-container1,.input-container3,.input-container4{
     padding: 15px;
     margin-bottom: 15px;
     border-radius: 10px;
@@ -367,18 +367,18 @@ th{
     background-color: #D3C0B9;
 }
 
-.input-container1 label{
+.input-container1 label,.input-container3 label,.input-container4 label{
     display: block;
     margin-bottom: 10px;
     font-weight: bold;
 }
-.input-pair {
+.input-pair,.input-pair3,.input-pair4 {
     display: flex;
     justify-content: center;
     margin-bottom: 15px;
 }
 
-.input-pair input {
+.input-pair input,.input-pair3 input,.input-pair4 input {
     flex: 1;
     padding: 10px;
     margin: 0 5px;
@@ -387,35 +387,35 @@ th{
     border-radius: 10px;
 }
 
-.input-group {
+.input-group,.input-group3,.input-group4 {
     width: 100%; /* Largeur fixe raisonnable */
     max-width: 100%; /* Pour le responsive */
     text-align: center;
 }
 
-.input-group label {
+.input-group label,.input-group3 label,.input-group4 label {
     display: block;
     margin-bottom: 5px;
     font-size: 0.9em;
     color: black;
 }
 
-.input-group input {
+.input-group input,.input-group3 input,.input-group4 input {
     width: 80%;
 }
 
 /* Centrage spécifique pour le premier input */
-.input-container1:first-child .input-group {
+.input-container1:first-child .input-group ,.input-container3:first-child .input-group3,.input-container4:first-child .input-group4 {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.input-container1:first-child .input-group input {
+.input-container1:first-child .input-group input,.input-container3:first-child .input-group3 input,.input-container4:first-child .input-group4 input {
     width: 60%; /* Largeur réduite pour le premier input */
 }
 
 /* Suppression des styles spécifiques au premier div */
-.input-container1:first-child .input-pair {
+.input-container1:first-child .input-pair,.input-container3:first-child .input-pair3,.input-container4:first-child .input-pair4 {
     all: unset;
 }

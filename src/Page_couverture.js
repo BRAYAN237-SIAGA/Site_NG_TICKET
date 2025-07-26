@@ -305,7 +305,15 @@ document.addEventListener('DOMContentLoaded', function() {
       const email = document.getElementById("email").value;
       const subject = document.getElementById("subject").value;
       const message = document.getElementById("message").value;
+      
+      const button = document.getElementById("btn-primary");
+      button.classList.add('loading');
 
+  // Simulation d'un délai de traitement (ex: requête réseau)
+    setTimeout(() => {
+    button.classList.remove('loading');
+    alert("Action terminée !");
+    }, 3000);
 
       emailjs.init("cKk2lRbauj7dEMLoK");
       

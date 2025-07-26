@@ -29,6 +29,13 @@ connecter.addEventListener("click",function(event){
     const email = document.getElementById("email").value;
     const motpasse = document.getElementById("motpasse").value;
 
+    connecter.classList.add('loading');
+
+  // Simulation d'un délai de traitement (ex: requête réseau)
+    setTimeout(() => {
+    connecter.classList.remove('loading');
+    }, 3000);
+
     signInWithEmailAndPassword(auth, email, motpasse)
   .then((userCredential) => {
     // Signed in 
@@ -53,14 +60,15 @@ connecter.addEventListener("click",function(event){
           });
         }).catch(error =>   
         {
-                console.log('Aucune utilisateur connecte ',error);
+          console.log('Aucune utilisateur connecte ',error);   
+          alert('verifier votre connexion ou votre formulaire')
         });
 
     // ...
   })
   .catch((error) => {
     const errorMessage = error.message;
-    alert('erreur de connection : ${errorMessage}')
+    alert('verifier votre connection ou votre formulaire')
   });
 
 

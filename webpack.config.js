@@ -1,28 +1,5 @@
 const path = require("path");
 
-module.exports ={
-    mode : "development",
-    entry : "./src/Page_couverture.js",
-    output:{
-        path : path.resolve(__dirname,"dist"),
-        filename : "bunble_Page_couverture.js"
-    },
-    devtool : "eval-cheap-source-map",
-    watch:true,
-};
-
-
-module.exports ={
-    mode : "development",
-    entry : "./src/Connection.js",
-    output:{
-        path : path.resolve(__dirname,"dist"),
-        filename : "bunble_connection.js"
-    },
-    devtool : "eval-cheap-source-map",
-    watch:true,
-};
-
 
 module.exports ={
     mode : "development",
@@ -30,40 +7,6 @@ module.exports ={
     output:{
         path : path.resolve(__dirname,"dist"),
         filename : "bunble_categorie.js"
-    },
-    devtool : "eval-cheap-source-map",
-    watch:true,
-};
-
-module.exports ={
-    mode : "development",
-    entry : "./src/Message$Commentaire.js",
-    output:{
-        path : path.resolve(__dirname,"dist"),
-        filename : "bunble_Message$Commentaire.js"
-    },
-    devtool : "eval-cheap-source-map",
-    watch:true,
-};
-
-module.exports ={
-    mode : "development",
-    entry : "./src/Site_Accueil_VoyageUrbain.js",
-    output:{
-        path : path.resolve(__dirname,"dist"),
-        filename : "bunble_Site_Accueil_VoyageUrbain.js"
-    },
-    devtool : "eval-cheap-source-map",
-    watch:true,
-};
-
-
-module.exports ={
-    mode : "development",
-    entry : "./src/Formulaire.js",
-    output:{
-        path : path.resolve(__dirname,"dist"),
-        filename : "bunble_formulaire.js"
     },
     devtool : "eval-cheap-source-map",
     watch:true,
@@ -80,6 +23,48 @@ module.exports ={
 };
 module.exports ={
     mode : "development",
+    entry : "./src/Page_securite.js",
+    output:{
+        path : path.resolve(__dirname,"dist"),
+        filename : "bunble_Page_securite.js"
+    },
+    devtool : "eval-cheap-source-map",
+    watch:true,
+};
+
+module.exports ={
+    mode : "development",
+    entry : "./src/Message$Commentaire.js",
+    output:{
+        path : path.resolve(__dirname,"dist"),
+        filename : "bunble_Message$Commentaire.js"
+    },
+    devtool : "eval-cheap-source-map",
+    watch:true,
+};
+module.exports ={
+    mode : "development",
+    entry : "./src/Connection.js",
+    output:{
+        path : path.resolve(__dirname,"dist"),
+        filename : "bunble_connection.js"
+    },
+    devtool : "eval-cheap-source-map",
+    watch:true,
+};
+module.exports ={
+    mode : "development",
+    entry : "./src/Formulaire.js",
+    output:{
+        path : path.resolve(__dirname,"dist"),
+        filename : "bunble_formulaire.js"
+    },
+    devtool : "eval-cheap-source-map",
+    watch:true,
+};
+
+module.exports ={
+    mode : "development",
     entry : "./src/Page_controle.js",
     output:{
         path : path.resolve(__dirname,"dist"),
@@ -90,20 +75,31 @@ module.exports ={
 };
 module.exports ={
     mode : "development",
-    entry : "./src/Visualisation.js",
+    entry : "./src/Page_couverture.js",
     output:{
         path : path.resolve(__dirname,"dist"),
-        filename : "bunble_Visualisation.js"
+        filename : "bunble_Page_couverture.js"
+    },
+    devtool : "eval-cheap-source-map",
+    watch:true,
+};
+
+module.exports ={
+    mode : "development",
+    entry : "./src/Site_Accueil_VoyageUrbain.js",
+    output:{
+        path : path.resolve(__dirname,"dist"),
+        filename : "bunble_Site_Accueil_VoyageUrbain.js"
     },
     devtool : "eval-cheap-source-map",
     watch:true,
 };
 module.exports ={
     mode : "development",
-    entry : "./src/Page_securite.js",
+    entry : "./src/Visualisation.js",
     output:{
         path : path.resolve(__dirname,"dist"),
-        filename : "bunble_Page_securite.js"
+        filename : "bunble_Visualisation.js"
     },
     devtool : "eval-cheap-source-map",
     watch:true,

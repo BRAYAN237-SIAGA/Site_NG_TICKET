@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 
 import { getAuth} from "firebase/auth";
 
-import { getFirestore,doc,collection,query,getDocs,where,deleteDoc,updateDoc,addDoc } from "firebase/firestore";
+import { getFirestore,doc,collection,query,getDocs,where,deleteDoc,updateDoc,addDoc,onSnapshot } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCFERME8CyH09LWGnb0tOo-WEZZaB3YgoI",
@@ -70,6 +70,8 @@ const firebaseConfig = {
 
             const ligneEntete = document.createElement("tr");
 
+            const celluleEntete = document.createElement("th");
+            celluleEntete.textContent = "Numero bus";
             const celluleEntete0 = document.createElement("th");
             celluleEntete0.textContent = "Etat";
             const celluleEntete1 = document.createElement("th");
@@ -107,6 +109,7 @@ const firebaseConfig = {
             const celluleEntete17 = document.createElement("th");
             celluleEntete17.textContent = "Action_2";
 
+            ligneEntete.appendChild(celluleEntete);
             ligneEntete.appendChild(celluleEntete0);
             ligneEntete.appendChild(celluleEntete1);
             ligneEntete.appendChild(celluleEntete2);
@@ -147,6 +150,8 @@ const firebaseConfig = {
 
                   const ligne = document.createElement("tr");
 
+                const cellule = document.createElement("td");
+                cellule.textContent = bus.numerobus;
                 const cellule0 = document.createElement("td");
                 cellule0.textContent = bus.etat;
                 const cellule1 = document.createElement("td");
@@ -237,6 +242,7 @@ const firebaseConfig = {
                 cellule17.appendChild(bouton_reduire);
                 cellule17.appendChild(bouton_ajouter);
 
+                ligne.append(cellule);
                 ligne.append(cellule0);
                 ligne.append(cellule1);
                 ligne.append(cellule2);
@@ -271,10 +277,14 @@ const firebaseConfig = {
                         status : "ouvert"
                     });
                     document.getElementById('dialog2').style.display = 'none';
-                        alert("Le bus est desormais ouvert .")
-                                              setTimeout(function() {
+                      alert("Le bus est desormais ouvert .");
+                      onSnapshot(collection(busthird, "DETAILS"), (snapshot) => {
+                        const users = snapshot.docs.map(doc => doc.data());
+                        console.log("Données à jour :", users);
+                        setTimeout(function() {
                         location.reload(true);
-                      }, 1500);
+                      }, 1800);
+                      });
                   });                 
                 });
 
@@ -292,10 +302,14 @@ const firebaseConfig = {
                         status : "fermé "
                     });
                     document.getElementById('dialog3').style.display = 'none';
-                        alert("Le bus est desormais fermé .")
-                                              setTimeout(function() {
+                        alert("Le bus est desormais fermé .");
+                        onSnapshot(collection(busthird, "DETAILS"), (snapshot) => {
+                        const users = snapshot.docs.map(doc => doc.data());
+                        console.log("Données à jour :", users);
+                        setTimeout(function() {
                         location.reload(true);
-                      }, 1500);
+                      }, 1800);
+                      });
                   });                 
                 });
                    
@@ -312,9 +326,13 @@ const firebaseConfig = {
 
                     });
                     document.getElementById('dialog').style.display = 'none';
-                                          setTimeout(function() {
+                        onSnapshot(collection(busthird, "DETAILS"), (snapshot) => {
+                        const users = snapshot.docs.map(doc => doc.data());
+                        console.log("Données à jour :", users);
+                        setTimeout(function() {
                         location.reload(true);
-                      }, 1500);
+                      }, 1800);
+                      });
                   });                 
                 });
         
@@ -375,6 +393,8 @@ const firebaseConfig = {
   
                   tableau_user.appendChild(ligneEnteteUser);
 
+
+
                   const userRef = collection(db,"CONTROLE");
                   const userfirst = doc(userRef,"PAIEMENT");
                   const usersecond = collection(userfirst,"INFORMATION");
@@ -428,9 +448,13 @@ const firebaseConfig = {
 
                       document.getElementById('dialog1').style.display = 'none';
                       alert("Voyageur ajouté avec succes.");
-                      setTimeout(function() {
+                        onSnapshot(collection(busthird, "DETAILS"), (snapshot) => {
+                        const users = snapshot.docs.map(doc => doc.data());
+                        console.log("Données à jour :", users);
+                        setTimeout(function() {
                         location.reload(true);
-                      }, 1500);
+                      }, 2000);
+                      });
 
                     });
                   });
@@ -499,6 +523,20 @@ const firebaseConfig = {
                       ligneuser.append(bouton_etat);
   
                       tableau_user.appendChild(ligneuser);
+
+                      const searchInput = document.getElementById('searchInput');
+
+                    searchInput.addEventListener('input', function () {
+                      const filter = this.value.toLowerCase();
+                      const rows = tableau_user.getElementsByTagName('tr');
+
+                      Array.from(rows).forEach(row => {
+                        const text = row.textContent.toLowerCase();
+                        row.style.display = text.includes(filter) ? '' : 'none';
+                      });
+                    });
+
+
 
                       if(user.check == "VALIDER"){
                         
@@ -661,7 +699,7 @@ auth.onAuthStateChanged(user =>{
               document.getElementById('dialog').style.display = 'none';
                                     setTimeout(function() {
                         location.reload(true);
-                      }, 1500);
+                      }, 1800);
               
             });
 
@@ -755,7 +793,7 @@ auth.onAuthStateChanged(user =>{
                 document.getElementById('dialog').style.display = 'none';
                                       setTimeout(function() {
                         location.reload(true);
-                      }, 1500);
+                      }, 1800);
               });
 
               });
@@ -845,7 +883,7 @@ auth.onAuthStateChanged(user =>{
                 document.getElementById('dialog').style.display = 'none';
                                       setTimeout(function() {
                         location.reload(true);
-                      }, 1500);
+                      }, 1800);
               });
 
 
@@ -910,7 +948,7 @@ auth.onAuthStateChanged(user =>{
                 document.getElementById('dialog').style.display = 'none';
                   setTimeout(function() {
                         location.reload(true);
-                      }, 1500);
+                      }, 1800);
                 
                 
               });
@@ -1153,10 +1191,9 @@ bouton_voir.addEventListener("click" , ()=>{
 });
 });
 
-          }else if(info.status == "invalider"){
-            document.getElementById("nom").innerHTML = "";
-
-          }
+  }else if(info.status == "invalider"){
+    document.getElementById("nom").innerHTML = "";
+  }
 
 
 });

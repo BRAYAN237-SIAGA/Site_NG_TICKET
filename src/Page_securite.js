@@ -26,9 +26,19 @@ const connecter = document.getElementById("connecter");
 
 connecter.addEventListener("click",function(event){
     event.preventDefault();
+
+    connecter.classList.add('loading');
+
+  // Simulation d'un délai de traitement (ex: requête réseau)
+    setTimeout(() => {
+    connecter.classList.remove('loading');
+    }, 3000);
     const motpasse = document.getElementById("motpasse").value;
 
+    
+
     if(motpasse == "123456"){
+
         alert("Soyez le bienvenue dans la page de controle de l'equipe NG_travel");
         window.location.href ="Page_controle.html";
     }else{

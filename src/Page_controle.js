@@ -138,7 +138,7 @@ const firebaseConfig = {
                     document.getElementById('dialog').style.display = 'none';
                                           setTimeout(function() {
                         location.reload(true);
-                      }, 1500);
+                      }, 2000);
                   });                 
                 });
 
@@ -170,7 +170,7 @@ const firebaseConfig = {
                     const controleupdate5 = doc(controleupdate4,"AGENCES");
                     const controleupdate6 = collection(controleupdate5,"NG_TICKET");
                     const docupdate1 = doc(controleupdate6,doccontrole);
-                    updateDoc(docupdate1,{
+                    updateDoc(docupdate1,{ 
                         status : "invalider"
                     }).then(() =>{
                         alert("L'agence a ete bloquer pour acceder a vos services");
@@ -184,7 +184,7 @@ const firebaseConfig = {
                     document.getElementById('dialog1').style.display = 'none';
                                           setTimeout(function() {
                         location.reload(true);
-                      }, 1500);
+                      }, 2000);
                   });                 
                 });
             });
@@ -314,7 +314,7 @@ const firebaseConfig = {
 });
 
 
-
+ //Bouton accepter et annuler pour les villes
     document.querySelector('.close-btn').addEventListener('click', () => {
         document.getElementById('resultPopup').style.display = 'none';
     });
@@ -336,7 +336,57 @@ const firebaseConfig = {
         document.getElementById('resultPopup').style.display = 'none';
         setTimeout(function() {
                         location.reload(true);
-                      }, 1500);
+                      }, 2000);
+    });
+
+    //Bouton accepter et annuler pour l'etat de ticket
+        document.querySelector('.close-btn3').addEventListener('click', () => {
+        document.getElementById('resultPopup3').style.display = 'none';
+    });
+    document.getElementById('confirmSubmit3').addEventListener('click', () => {
+          const formData = {
+            etat_ticket: document.getElementById('nomticket').value,
+        };
+        
+            const docRefetatticket = collection(db,"CONTROLE");
+        const sousRefetatticket = doc(docRefetatticket,"ETAT_TICKET");
+        const finalRefetatticket = collection(sousRefetatticket,"NG_TICKET");
+        
+        addDoc(finalRefetatticket,{
+            etat_ticket : formData.etat_ticket,
+        }).then(() => 
+            document.querySelectorAll('input').forEach(input => {
+                input.value = '';
+            })); 
+        document.getElementById('resultPopup3').style.display = 'none';
+        setTimeout(function() {
+                        location.reload(true);
+                      }, 2000);
+    });
+
+        //Bouton accepter et annuler pour le nom du trajet
+        document.querySelector('.close-btn4').addEventListener('click', () => {
+        document.getElementById('resultPopup4').style.display = 'none';
+    });
+    document.getElementById('confirmSubmit4').addEventListener('click', () => {
+          const formData = {
+            trajet: document.getElementById('nomtrajet').value,
+        };
+        
+            const docReftrajet= collection(db,"CONTROLE");
+        const sousReftrajet = doc(docReftrajet,"TRAJET");
+        const finalReftrajet = collection(sousReftrajet,"NG_TICKET");
+        
+        addDoc(finalReftrajet,{
+            trajet : formData.trajet,
+        }).then(() => 
+            document.querySelectorAll('input').forEach(input => {
+                input.value = '';
+            })); 
+        document.getElementById('resultPopup4').style.display = 'none';
+        setTimeout(function() {
+                        location.reload(true);
+                      }, 2000);
     });
 
 
@@ -400,12 +450,143 @@ const firebaseConfig = {
                     document.getElementById('dialog2').style.display = 'none';
                         setTimeout(function() {
                             location.reload(true);
-                        }, 1500);
+                        }, 2000);
                   });
                   });
                      
                 });
               });
+
+
+              //Affichager et suppression d'etat de ticket
+
+              const etatticketRef = collection(db,"CONTROLE");
+              const etatticketfirst = doc(etatticketRef,"ETAT_TICKET");
+              const etatticketsecond = collection(etatticketfirst,"NG_TICKET");
+          
+              getDocs(etatticketsecond).then((querySnapshot3) => {
+                
+                const tbody_4 =document.getElementById("tbody_4");
+                querySnapshot3.forEach((docte3) =>{
+                  const etatticketsupdoc = docte3.id;
+          
+                  const tr = document.createElement("tr");
+          
+                  const tdng_ticket = document.createElement("td");
+                  const tdetatticket = document.createElement("td");
+                  const tdactionetatticket = document.createElement("td");
+          
+                  tdng_ticket.textContent = "NG_TICKET";
+                  tdetatticket.textContent = docte3.data().etat_ticket;
+    
+                  const bouton_supetatticket = document.createElement("button");
+                  bouton_supetatticket.textContent = "Supprimer";
+                  bouton_supetatticket.style.width= "80px";
+                  bouton_supetatticket.style.borderRadius= "10px";
+                  bouton_supetatticket.style.fontWeight="bold";
+                  bouton_supetatticket.style.color="black";
+                  bouton_supetatticket.style.backgroundColor= " #E8E8E8";
+                  bouton_supetatticket.style.boxShadow="3px 3px 3px  #e4e2de";
+    
+                  
+              
+          
+                  tr.appendChild(tdng_ticket);
+                  tr.appendChild(tdetatticket);
+                  tr.appendChild(bouton_supetatticket);
+          
+                  tbody_4.appendChild(tr);
+    
+                  
+                  bouton_supetatticket.addEventListener('click', function() {
+                    document.getElementById('dialog4').style.display = 'block';
+    
+                      
+                  document.getElementById('annuler4').addEventListener('click', function() {
+                    document.getElementById('dialog4').style.display = 'none';
+                  });
+                  
+                  document.getElementById('acceder4').addEventListener('click', function() {
+
+                    const etatticketsup = doc(etatticketsecond,etatticketsupdoc);
+                    deleteDoc(etatticketsup).then(()=>{
+      
+                    }); 
+                    document.getElementById('dialog4').style.display = 'none';
+                        setTimeout(function() {
+                            location.reload(true);
+                        }, 2000);
+                  });
+                  });
+                     
+                });
+              });
+
+
+              //Affichager et suppression du trajet
+
+              const trajetRef = collection(db,"CONTROLE");
+              const trajetfirst = doc(trajetRef,"TRAJET");
+              const trajetsecond = collection(trajetfirst,"NG_TICKET");
+          
+              getDocs(trajetsecond).then((querySnapshot4) => {
+                
+                const tbody_5 =document.getElementById("tbody_5");
+                querySnapshot4.forEach((docte4) =>{
+                  const trajetsupdoc = docte4.id;
+          
+                  const tr = document.createElement("tr");
+          
+                  const tdng_ticket = document.createElement("td");
+                  const tdtrajet = document.createElement("td");
+                  const tdactiontrajet = document.createElement("td");
+          
+                  tdng_ticket.textContent = "NG_TICKET";
+                  tdtrajet.textContent = docte4.data().trajet;
+    
+                  const bouton_suptrajet = document.createElement("button");
+                  bouton_suptrajet.textContent = "Supprimer";
+                  bouton_suptrajet.style.width= "80px";
+                  bouton_suptrajet.style.borderRadius= "10px";
+                  bouton_suptrajet.style.fontWeight="bold";
+                  bouton_suptrajet.style.color="black";
+                  bouton_suptrajet.style.backgroundColor= " #E8E8E8";
+                  bouton_suptrajet.style.boxShadow="3px 3px 3px  #e4e2de";
+    
+                  
+              
+          
+                  tr.appendChild(tdng_ticket);
+                  tr.appendChild(tdtrajet);
+                  tr.appendChild(bouton_suptrajet);
+          
+                  tbody_5.appendChild(tr);
+    
+                  
+                  bouton_suptrajet.addEventListener('click', function() {
+                    document.getElementById('dialog5').style.display = 'block';
+    
+                      
+                  document.getElementById('annuler5').addEventListener('click', function() {
+                    document.getElementById('dialog5').style.display = 'none';
+                  });
+                  
+                  document.getElementById('acceder5').addEventListener('click', function() {
+
+                    const trajetsup = doc(trajetsecond,trajetsupdoc);
+                    deleteDoc(trajetsup).then(()=>{
+      
+                    }); 
+                    document.getElementById('dialog5').style.display = 'none';
+                        setTimeout(function() {
+                            location.reload(true);
+                        }, 2000);
+                  });
+                  });
+                     
+                });
+              });
+            
 
 
 
@@ -458,6 +639,14 @@ const firebaseConfig = {
                         tr.appendChild(bouton_supdestination);
                 
                         tbody_2.appendChild(tr);
+
+                            const destinationglobal1 = collection(db,"AGENCES");
+                            const destinationglobal2 = doc(destinationglobal1,docte.data().uid);
+                            const destinationglobal3 = collection(destinationglobal2,docte.data().nomagence);
+                            const destinationglobal4 = doc(destinationglobal3,"DESTINATION");
+                            const destinationglobal5 = collection(destinationglobal4,"INFORMATION");
+
+                             const reference = query(destinationglobal5,where("codesup", "==",docte.data().codesup));
               
                         bouton_supdestination.addEventListener('click', function() {
                           document.getElementById('dialog3').style.display = 'block';
@@ -469,14 +658,22 @@ const firebaseConfig = {
                           document.getElementById('acceder3').addEventListener('click', function() {
                             
                           const destinationsup = doc(destinationsecond,docdestination);
-              
                           deleteDoc(destinationsup).then(()=>{ 
                           });  
+                            getDocs(reference).then((querySnapshot) => {
+                                querySnapshot.forEach((docteglobal) =>{
+                                    const globaldestination = docteglobal.id
+
+                                    const supglobaldestination = doc(destinationglobal5,globaldestination)
+                                    deleteDoc(supglobaldestination).then(()=>{})
+
+                                });
+                            });
                         
                             document.getElementById('dialog3').style.display = 'none';
                                                   setTimeout(function() {
                                       location.reload(true);
-                                    }, 1500);
+                                    }, 2000);
                             
                           });
               
@@ -548,4 +745,130 @@ document.getElementById('submitBtn').addEventListener('click', () => {
         if(details.values.length > 0) results.push(details);
     });
     displayResults(results);
+});
+
+//deuxieme champ pour l'etat du ticket
+function displayResults3(results) {
+        const resultContent3 = document.getElementById('resultContent3');
+        resultContent3.innerHTML = '';
+        if(results.length === 0) {
+
+            resultContent3.innerHTML = '<p>Aucune information à afficher</p>';
+            document.getElementById('confirmSubmit3').style.display="none";
+           document.getElementById('confirmSubmit3').style.display="none";
+        }else{
+            results.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'result-item';
+                itemDiv.innerHTML = `<h4>${item.title}</h4>`;
+                
+                item.values.forEach(detail => {
+                    itemDiv.innerHTML += `<p><strong>${detail.label}:</strong> ${detail.value}</p>`;
+                });
+                
+                resultContent3.appendChild(itemDiv);
+            });
+        }
+        
+        document.getElementById('resultPopup3').style.display = 'flex';
+    }
+document.querySelectorAll('.category1 input').forEach(input => {
+input.addEventListener('focus', function() {
+this.style.borderColor = '#F96A24';
+});
+
+input.addEventListener('blur', function() {
+this.style.borderColor = '#DCC9C2';
+});
+});
+
+
+
+document.getElementById('submitBtn3').addEventListener('click', () => {
+    const results = [];
+    
+    document.querySelectorAll('.input-container3').forEach(container => {
+        const title = container.querySelector('p').textContent;
+        const details = {
+            title,
+            values: []
+        };
+        
+        container.querySelectorAll('.input-group3').forEach(group => {
+            const label = group.querySelector('p').textContent;
+            const field = group.querySelector('input, textarea, select'); // Prend tous les types de champs
+            if(field?.value) {
+                details.values.push({
+                    label,
+                    value: field.value
+                });
+            }
+        });
+        
+        if(details.values.length > 0) results.push(details);
+    });
+    displayResults3(results);
+});
+
+//troisieme champ pour le nom du trajet
+function displayResults4(results) {
+        const resultContent4 = document.getElementById('resultContent4');
+        resultContent4.innerHTML = '';
+        if(results.length === 0) {
+
+            resultContent4.innerHTML = '<p>Aucune information à afficher</p>';
+            document.getElementById('confirmSubmit4').style.display="none";
+           document.getElementById('confirmSubmit4').style.display="none";
+        }else{
+            results.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'result-item';
+                itemDiv.innerHTML = `<h4>${item.title}</h4>`;
+                
+                item.values.forEach(detail => {
+                    itemDiv.innerHTML += `<p><strong>${detail.label}:</strong> ${detail.value}</p>`;
+                });
+                
+                resultContent4.appendChild(itemDiv);
+            });
+        }
+        
+        document.getElementById('resultPopup4').style.display = 'flex';
+    }
+document.querySelectorAll('.category1 input').forEach(input => {
+input.addEventListener('focus', function() {
+this.style.borderColor = '#F96A24';
+});
+
+input.addEventListener('blur', function() {
+this.style.borderColor = '#DCC9C2';
+});
+});
+
+
+
+document.getElementById('submitBtn4').addEventListener('click', () => {
+    const results = [];
+    
+    document.querySelectorAll('.input-container4').forEach(container => {
+        const title = container.querySelector('p').textContent;
+        const details = {
+            title,
+            values: []
+        };
+        
+        container.querySelectorAll('.input-group4').forEach(group => {
+            const label = group.querySelector('p').textContent;
+            const field = group.querySelector('input, textarea, select'); // Prend tous les types de champs
+            if(field?.value) {
+                details.values.push({
+                    label,
+                    value: field.value
+                });
+            }
+        });
+        
+        if(details.values.length > 0) results.push(details);
+    });
+    displayResults4(results);
 });

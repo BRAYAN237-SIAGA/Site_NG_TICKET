@@ -55,22 +55,22 @@
                 </div>
             </div>
             <div class="input-container2" >
-            <p>Information 1</p>
-            <div class="input-pair">
-                <div class="input-group">
-                    <p>Nom de la ville</p>
-                    <input type="text" placeholder="Nom de la ville" id="nomville">
+                <p>Information 1</p>
+                <div class="input-pair">
+                    <div class="input-group">
+                        <p>Nom de la ville</p>
+                        <input type="text" placeholder="Nom de la ville" id="nomville">
+                    </div>
+                </div>
+                <div class="submit-container">
+                    <button type="button" class="submit-btn" id="submitBtn">Enregistrer</button>
                 </div>
             </div>
-            <div class="submit-container">
-            <button type="button" class="submit-btn" id="submitBtn">Enregistrer</button>
-        </div>
-        </div>
 
         
         <div class="input-container1" >
             <div class="table-container">
-                <h3>CATEGORIE (S)</h1>
+                <h3>VILLE (s)</h1>
                 <table>
                 <thead>
                     <tr>
@@ -104,6 +104,67 @@
       </tbody>
     </table>
   </div>
+</div>
+            <div class="input-container3" >
+                <p>Information 2</p>
+                <div class="input-pair3">
+                    <div class="input-group3">
+                        <p>Nom de l'etat du ticket</p>
+                        <input type="text" placeholder="Nom de l'etat du ticket" id="nomticket">
+                    </div>
+                </div>
+                <div class="submit-container3">
+                    <button type="button" class="submit-btn3" id="submitBtn3">Enregistrer</button>
+                </div>
+            </div>
+
+        
+        <div class="input-container1" >
+            <div class="table-container">
+                <h3>ETAT DU TICKET (s)</h1>
+                <table>
+                <thead>
+                    <tr>
+                    <th>NG_TICKET</th>
+                    <th>Etat du ticket</th>
+                    <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody_4">
+                </tbody>
+                </table>
+            </div>
+        </div>
+
+            <div class="input-container4" >
+                <p>Information 3</p>
+                <div class="input-pair4">
+                    <div class="input-group4">
+                        <p>Nom du trajet</p>
+                        <input type="text" placeholder="Nom de nom du trajet" id="nomtrajet">
+                    </div>
+                </div>
+                <div class="submit-container4">
+                    <button type="button" class="submit-btn4" id="submitBtn4">Enregistrer</button>
+                </div>
+            </div>
+
+        
+        <div class="input-container1" >
+            <div class="table-container">
+                <h3>ETAT DU TICKET (s)</h1>
+                <table>
+                <thead>
+                    <tr>
+                    <th>NG_TICKET</th>
+                    <th>Nom trajet</th>
+                    <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody_5">
+                </tbody>
+                </table>
+            </div>
         </div>
 
         <!-- Popup de résultats -->
@@ -113,6 +174,22 @@
                 <div id="resultContent"></div>
                 <button class="submit-btn" id="confirmSubmit">Envoyer</button>
                 <button class="close-btn">Fermer</button>
+            </div>
+        </div>
+        <div id="resultPopup3" class="result-popup3">
+            <div class="popup-content3">
+                <h3>Résumé des informations</h3>
+                <div id="resultContent3"></div>
+                <button class="submit-btn3" id="confirmSubmit3">Envoyer</button>
+                <button class="close-btn3">Fermer</button>
+            </div>
+        </div>
+        <div id="resultPopup4" class="result-popup4">
+            <div class="popup-content4">
+                <h3>Résumé des informations</h3>
+                <div id="resultContent4"></div>
+                <button class="submit-btn4" id="confirmSubmit4">Envoyer</button>
+                <button class="close-btn4">Fermer</button>
             </div>
         </div>
             <!-- Popup de résultats -->
@@ -132,9 +209,19 @@
             <button id="acceder2" class="btn2">VALIDER</button>
             </div>
             <div id="dialog3" class="dialog3">
-            <p>Etes vous sur de vouloir supprimer cette cette destination </p>
+            <p>Etes vous sur de vouloir supprimer cette destination </p>
             <button id="annuler3" class="btn3">ANNULER</button>
             <button id="acceder3" class="btn3">VALIDER</button>
+            </div>
+            <div id="dialog4" class="dialog4">
+            <p>Etes vous sur de vouloir supprimer cet etat de ticket </p>
+            <button id="annuler4" class="btn4">ANNULER</button>
+            <button id="acceder4" class="btn4">VALIDER</button>
+            </div>
+            <div id="dialog5" class="dialog5">
+            <p>Etes vous sur de vouloir supprimer ce trajet </p>
+            <button id="annuler5" class="btn5">ANNULER</button>
+            <button id="acceder5" class="btn5">VALIDER</button>
             </div>
         </div>
     <script src="bunble_Page_controle.js" defer type="module"></script>
