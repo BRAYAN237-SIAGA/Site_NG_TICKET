@@ -283,7 +283,7 @@ const firebaseConfig = {
                         console.log("Données à jour :", users);
                         setTimeout(function() {
                         location.reload(true);
-                      }, 1800);
+                      }, 2500);
                       });
                   });                 
                 });
@@ -308,7 +308,7 @@ const firebaseConfig = {
                         console.log("Données à jour :", users);
                         setTimeout(function() {
                         location.reload(true);
-                      }, 1800);
+                      }, 2500);
                       });
                   });                 
                 });
@@ -597,7 +597,7 @@ getDocs(qutilisateurcheckRef).then((querySnapshot) => {
                         console.log("Données à jour :", users);
                         setTimeout(function() {
                         location.reload(true);
-                      }, 2000);
+                      }, 2500);
                       });
 
                     });

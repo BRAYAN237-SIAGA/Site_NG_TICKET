@@ -36,8 +36,6 @@ const firebaseConfig = {
               const tdville = document.createElement("td");
               const tdville_depart1 = document.createElement("td");
               const tdville_arriver1 = document.createElement("td");
-              const tdville_depart2 = document.createElement("td");
-              const tdville_arriver2 = document.createElement("td");
               const tdtelephone = document.createElement("td");
               const tdpays = document.createElement("td");
               const tddate_inscription = document.createElement("td");
@@ -68,9 +66,7 @@ const firebaseConfig = {
               tdemail.textContent = controledocte.email;
               tdville.textContent = controledocte.ville;
               tdville_depart1.textContent = controledocte.ville_depart1;
-              tdville_arriver1.textContent = controledocte.ville_arriver1;
-              tdville_depart2.textContent = controledocte.ville_depart2;
-              tdville_arriver2.textContent = controledocte.ville_arriver2;
+              tdville_arriver1.textContent = controledocte.quartier_depart1;
               tdtelephone.textContent = controledocte.telephone;
               tdpays.textContent = controledocte.pays;
               tddate_inscription.textContent = controledocte.date_inscription;
@@ -83,8 +79,6 @@ const firebaseConfig = {
               tr.appendChild(tdville);
               tr.appendChild(tdville_depart1);
               tr.appendChild(tdville_arriver1);
-              tr.appendChild(tdville_depart2);
-              tr.appendChild(tdville_arriver2);
               tr.appendChild(tdtelephone);
               tr.appendChild(tdpays);
               tr.appendChild(tddate_inscription);
@@ -138,7 +132,7 @@ const firebaseConfig = {
                     document.getElementById('dialog').style.display = 'none';
                                           setTimeout(function() {
                         location.reload(true);
-                      }, 2000);
+                      }, 2500);
                   });                 
                 });
 
@@ -184,7 +178,7 @@ const firebaseConfig = {
                     document.getElementById('dialog1').style.display = 'none';
                                           setTimeout(function() {
                         location.reload(true);
-                      }, 2000);
+                      }, 2500);
                   });                 
                 });
             });
@@ -337,7 +331,7 @@ const firebaseConfig = {
         document.getElementById('resultPopup').style.display = 'none';
         setTimeout(function() {
                         location.reload(true);
-                      }, 2000);
+                      }, 2500);
     });
 
     //Bouton accepter et annuler pour l'etat de ticket
@@ -362,7 +356,7 @@ const firebaseConfig = {
         document.getElementById('resultPopup3').style.display = 'none';
         setTimeout(function() {
                         location.reload(true);
-                      }, 2000);
+                      }, 2500);
     });
 
         //Bouton accepter et annuler pour le nom du trajet
@@ -387,7 +381,7 @@ const firebaseConfig = {
         document.getElementById('resultPopup4').style.display = 'none';
         setTimeout(function() {
                         location.reload(true);
-                      }, 2000);
+                      }, 2500);
     });
 
 
@@ -418,7 +412,7 @@ const firebaseConfig = {
         document.getElementById('resultPopup5').style.display = 'none';
         setTimeout(function() {
                         location.reload(true);
-                      }, 2000);
+                      }, 2500);
     });
 
 
@@ -482,7 +476,7 @@ const firebaseConfig = {
                     document.getElementById('dialog2').style.display = 'none';
                         setTimeout(function() {
                             location.reload(true);
-                        }, 2000);
+                        }, 2500);
                   });
                   });
                      
@@ -547,7 +541,7 @@ const firebaseConfig = {
                     document.getElementById('dialog4').style.display = 'none';
                         setTimeout(function() {
                             location.reload(true);
-                        }, 2000);
+                        }, 2500);
                   });
                   });
                      
@@ -612,7 +606,7 @@ const firebaseConfig = {
                     document.getElementById('dialog5').style.display = 'none';
                         setTimeout(function() {
                             location.reload(true);
-                        }, 2000);
+                        }, 2500);
                   });
                   });
                      
@@ -704,7 +698,7 @@ const firebaseConfig = {
                             document.getElementById('dialog3').style.display = 'none';
                                                   setTimeout(function() {
                                       location.reload(true);
-                                    }, 2000);
+                                    }, 2500);
                             
                           });
               
@@ -774,7 +768,7 @@ const firebaseConfig = {
                             document.getElementById('dialog6').style.display = 'none';
                                                   setTimeout(function() {
                                       location.reload(true);
-                                    }, 2000);
+                                    }, 2500);
                             
                           });
               
