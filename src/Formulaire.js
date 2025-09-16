@@ -39,9 +39,7 @@ import emailjs from 'emailjs-com';
     const confirmmotpasse = document.getElementById("confirmmotpasse").value;
     const date = document.getElementById("date").value;
     const villed = document.getElementById("villed").value;
-    const villea = document.getElementById("villea").value;
-    const villed2 = document.getElementById("villed2").value;
-    const villea2 = document.getElementById("villea2").value;
+    const quartierd = document.getElementById("villea").value;
     const telephone = document.getElementById("telephone").value;
     const ville = document.getElementById("ville").value;
     const pays = document.getElementById("pays").value;
@@ -65,7 +63,7 @@ import emailjs from 'emailjs-com';
           ville :ville
         });
 
-    createUserWithEmailAndPassword(auth, email, motpasse,agence,promoteur,date,villed,villea,villed2,villea2,ville,pays,telephone)
+    createUserWithEmailAndPassword(auth, email, motpasse,agence,promoteur,date,villed,quartierd,ville,pays,telephone)
     .then((userCredential) => {
       const user = userCredential.user;
       const docRef = doc(db,"AGENCES",user.uid);
@@ -76,9 +74,7 @@ import emailjs from 'emailjs-com';
         promoteur :promoteur,
         date_inscription: date,
         ville_depart1:villed,
-        ville_arriver1 : villea,
-        ville_depart2:villed2,
-        ville_arriver2 : villea2,
+        quartier_depart1 : quartierd,
         ville:ville,
         pays : pays,
         telephone:telephone,
@@ -97,9 +93,7 @@ import emailjs from 'emailjs-com';
         promoteur :promoteur,
         date_inscription : date,
         ville_depart1:villed,
-        ville_arriver1 : villea,
-        ville_depart2:villed2,
-        ville_arriver2 : villea2,
+        quartier_depart1 : quartierd,
         ville:ville,
         pays : pays,
         telephone:telephone,

@@ -162,7 +162,7 @@ header nav {
     }
 }
 /*dropdown pour les etats du ticket*/
-        .dropdown,.dropdown1,.dropdown2,.dropdown3,.dropdown4,.dropdown5,.dropdown6 {
+        .dropdown,.dropdown1,.dropdown2,.dropdown3,.dropdown4,.dropdown5,.dropdown6,.dropdown7 {
             position: absolute;
             width: 50%;
             border-radius: 20px;
@@ -178,16 +178,16 @@ header nav {
             margin-top: 4px;
         }
         .dropdown-item,.dropdown1-item1 ,.dropdown2-item2
-        ,.dropdown3-item3,.dropdown4-item4,.dropdown5-item5,.dropdown6-item6 {
+        ,.dropdown3-item3,.dropdown4-item4,.dropdown5-item5,.dropdown6-item6,.dropdown7-item7 {
             padding: 10px 15px;
             cursor: pointer;
             border-bottom: 1px solid #f0f0f0;
         }
         .dropdown-item:hover,.dropdown1-item1:hover ,.dropdown2-item2:hover
-         ,.dropdown3-item3:hover ,.dropdown4-item4:hover ,.dropdown5-item5:hover ,.dropdown6-item6:hover {
+         ,.dropdown3-item3:hover ,.dropdown4-item4:hover ,.dropdown5-item5:hover ,.dropdown6-item6:hover,.dropdown7-item7:hover {
             background-color: #f5f5f5;
         }
-        .loading,.loading1,.loading2,.loading3,.loading4,.loading5,.loading6 {
+        .loading,.loading1,.loading2,.loading3,.loading4,.loading5,.loading6 ,.loading7 {
             padding: 10px 15px;
             color: #666;
             font-style: italic;

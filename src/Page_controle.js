@@ -280,29 +280,30 @@ const firebaseConfig = {
         });
     });
     
-    // Mise en surbrillance de l'onglet actif basée sur l'URL
+    // Mise en surbrillance de l'onglet actif
     function setActiveLink() {
-        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        const currentPage = window.location.pathname.split('/').pop() || 'Page_controle.html';
         const navLinks = document.querySelectorAll('.nav-links a');
         
-        // Si on est sur la page d'accueil, on active le lien Accueil
-        if (currentPage === 'Page_couverture.html' || currentPage === '') {
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === 'age_couverture.html' || link.getAttribute('href') === './') {
-                    link.classList.add('active');
-                }
-            });
+        // Si on est sur la page d'accueil (sans nom de fichier)
+        if (currentPage === '') {
+            document.querySelector('.nav-links a[href="Page_controle.html"]')?.classList.add('active');
             return;
         }
         
-        // Pour les autres pages, on cherche le lien correspondant
         navLinks.forEach(link => {
-            const linkHref = link.getAttribute('href');
-            const isActive = linkHref.includes(currentPage) || 
-                           (currentPage.includes(linkHref.replace('./', '').replace('/', '')) && linkHref !== './' && linkHref !== '/');
+            // Si le lien a la classe 'active' (pour les liens avec #)
+            if (link.classList.contains('active')) {
+                return; // On garde cette classe
+            }
             
-            link.classList.toggle('active', isActive);
+            // Pour les autres liens, on vérifie s'ils correspondent à la page courante
+            const linkHref = link.getAttribute('href');
+            if (linkHref === currentPage) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
         });
     }
     
@@ -384,6 +385,37 @@ const firebaseConfig = {
                 input.value = '';
             })); 
         document.getElementById('resultPopup4').style.display = 'none';
+        setTimeout(function() {
+                        location.reload(true);
+                      }, 2000);
+    });
+
+
+
+            //Bouton accepter et annuler pour des prix et tarifications des tickets
+        document.querySelector('.close-btn5').addEventListener('click', () => {
+        document.getElementById('resultPopup5').style.display = 'none';
+    });
+    document.getElementById('confirmSubmit5').addEventListener('click', () => {
+          const formData = {
+            prixticket: document.getElementById('prixticket').value,
+            fraismonetbil: document.getElementById('fraismonetbil').value,
+            fraisngticket: document.getElementById('fraisngticket').value,
+        };
+        
+            const docRefprix= collection(db,"CONTROLE");
+        const sousRefprix1 = doc(docRefprix,"TARIFICATIONS");
+        const finalRefprix2 = collection(sousRefprix1,"NG_TICKET");
+        
+        addDoc(finalRefprix2,{
+            prixticket : parseInt(formData.prixticket),
+            fraismonetbil : parseInt(formData.fraismonetbil),
+            fraisngticket : parseInt(formData.fraisngticket),
+        }).then(() => 
+            document.querySelectorAll('input').forEach(input => {
+                input.value = '';
+            })); 
+        document.getElementById('resultPopup5').style.display = 'none';
         setTimeout(function() {
                         location.reload(true);
                       }, 2000);
@@ -589,8 +621,7 @@ const firebaseConfig = {
             
 
 
-
-
+                    //affichage et suppression des destinations
                     const destinationRef = collection(db,"CONTROLE");
                     const destinationfirst = doc(destinationRef,"DESTINATION");
                     const destinationsecond = collection(destinationfirst,"NG_TRAVEL");
@@ -681,6 +712,81 @@ const firebaseConfig = {
                         
                       });
                     });
+
+
+                    //affichage et suppression des tarifications
+                    const tarificationsRef = collection(db,"CONTROLE");
+                    const tarificationsfirst = doc(tarificationsRef,"TARIFICATIONS");
+                    const tarificationssecond = collection(tarificationsfirst,"NG_TICKET");
+                
+                    getDocs(tarificationssecond).then((querySnapshot) => {
+                      
+                      const tbody_6 =document.getElementById("tbody_6");
+                      querySnapshot.forEach((docte) =>{
+              
+                        const doctarifications = docte.id;
+                
+                        const tr = document.createElement("tr");
+                
+                        const tdngticket = document.createElement("td");
+                        const tdprixticket = document.createElement("td");
+                        const tdfraismonetbil = document.createElement("td");
+                        const tdfraisngticket = document.createElement("td");
+                        const tdactiontarifications = document.createElement("td");
+                
+                        tdngticket.textContent = "NG_TICKET";
+                        tdprixticket.textContent = docte.data().prixticket;
+                        tdfraismonetbil.textContent = docte.data().fraismonetbil;
+                        tdfraisngticket.textContent = docte.data().fraisngticket;
+              
+                        const bouton_suptarifications = document.createElement("button");
+                        bouton_suptarifications.textContent = "Supprimer";
+                        bouton_suptarifications.style.width= "80px";
+                        bouton_suptarifications.style.fontWeight="bold";
+                        bouton_suptarifications.style.borderRadius= "10px";
+                        bouton_suptarifications.style.color="black";
+                        bouton_suptarifications.style.backgroundColor= "#E8E8E8";
+                        bouton_suptarifications.style.boxShadow="3px 3px 3px  #e4e2de";
+              
+              
+                
+                        tr.appendChild(tdngticket);
+                        tr.appendChild(tdprixticket);
+                        tr.appendChild(tdfraismonetbil);
+                        tr.appendChild(tdfraisngticket);
+                        tr.appendChild(bouton_suptarifications);
+                
+                        tbody_6.appendChild(tr);
+              
+                        bouton_suptarifications.addEventListener('click', function() {
+                          document.getElementById('dialog6').style.display = 'block';
+              
+                          document.getElementById('annuler6').addEventListener('click', function() {
+                            document.getElementById('dialog6').style.display = 'none';
+                          });
+                          
+                          document.getElementById('acceder6').addEventListener('click', function() {
+                            
+                          const tarificationssup = doc(tarificationssecond,doctarifications);
+                          deleteDoc(tarificationssup).then(()=>{ 
+                          });  
+                        
+                            document.getElementById('dialog6').style.display = 'none';
+                                                  setTimeout(function() {
+                                      location.reload(true);
+                                    }, 2000);
+                            
+                          });
+              
+                        });
+                        
+                      });
+                    });
+
+
+
+
+
 
               
 
@@ -871,4 +977,69 @@ document.getElementById('submitBtn4').addEventListener('click', () => {
         if(details.values.length > 0) results.push(details);
     });
     displayResults4(results);
+});
+
+
+
+//Quatrieme champ pour les prix et tarifications
+function displayResults5(results) {
+        const resultContent5 = document.getElementById('resultContent5');
+        resultContent5.innerHTML = '';
+        if(results.length === 0) {
+
+            resultContent5.innerHTML = '<p>Aucune information à afficher</p>';
+            document.getElementById('confirmSubmit5').style.display="none";
+           document.getElementById('confirmSubmit5').style.display="none";
+        }else{
+            results.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'result-item';
+                itemDiv.innerHTML = `<h4>${item.title}</h4>`;
+                
+                item.values.forEach(detail => {
+                    itemDiv.innerHTML += `<p><strong>${detail.label}:</strong> ${detail.value}</p>`;
+                });
+                
+                resultContent5.appendChild(itemDiv);
+            });
+        }
+        
+        document.getElementById('resultPopup5').style.display = 'flex';
+    }
+document.querySelectorAll('.category1 input').forEach(input => {
+input.addEventListener('focus', function() {
+this.style.borderColor = '#F96A24';
+});
+
+input.addEventListener('blur', function() {
+this.style.borderColor = '#DCC9C2';
+});
+});
+
+
+
+document.getElementById('submitBtn5').addEventListener('click', () => {
+    const results = [];
+    
+    document.querySelectorAll('.input-container5').forEach(container => {
+        const title = container.querySelector('p').textContent;
+        const details = {
+            title,
+            values: []
+        };
+        
+        container.querySelectorAll('.input-group5').forEach(group => {
+            const label = group.querySelector('p').textContent;
+            const field = group.querySelector('input, textarea, select'); // Prend tous les types de champs
+            if(field?.value) {
+                details.values.push({
+                    label,
+                    value: field.value
+                });
+            }
+        });
+        
+        if(details.values.length > 0) results.push(details);
+    });
+    displayResults5(results);
 });

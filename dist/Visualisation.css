@@ -210,7 +210,7 @@ th{
     font-weight: bold;
 }
 
-.dialog,.dialog1,.dialog2,.dialog3 {
+.dialog,.dialog1,.dialog2,.dialog3,.dialog4,.dialog5 {
 	position: fixed;
 	top: 50%;
 	left: 50%;
@@ -223,7 +223,7 @@ th{
 	display: none;
 }
 
-.btn,.btn1,.btn2,.btn3 {
+.btn,.btn1,.btn2,.btn3,.btn4,.btn5 {
 	background-color: #E8E8E8;
 	color: black;
 	padding: 10px 20px;
@@ -232,16 +232,16 @@ th{
     font-weight: bold;
 	cursor: pointer;
 }
-.btn:hover,.btn1:hover,.btn2:hover,.btn3:hover {
+.btn:hover,.btn1:hover,.btn2:hover,.btn3:hover,.btn4:hover,.btn5:hover {
 	background-color: #E8E8E8;
 }
 
-#annuler,#annuler1,#annuler2,#annuler3 {
+#annuler,#annuler1,#annuler2,#annuler3,#annuler4,#annuler5 {
 	background-color: #F96A24;
     font-weight: bold;
 }
 
-#annuler:hover,#annuler1:hover,#annuler2:hover,#annuler3:hover {
+#annuler:hover,#annuler1:hover,#annuler2:hover,#annuler3:hover,#annuler4:hover,#annuler5:hover {
 	background-color: #F96A24;
 }
 

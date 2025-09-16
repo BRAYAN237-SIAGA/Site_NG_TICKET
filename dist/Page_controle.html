@@ -20,7 +20,8 @@
             </div>
             
             <div class="nav-links" id="nav-links">
-                <a href="Page_controle.html">Controle</a>
+                <a href="Page_controle.html" class="active">Controle</a>
+                <a href="tracabilite.html">Traçabilité</a>
             </div>
         </nav>
     </header>
@@ -167,6 +168,49 @@
             </div>
         </div>
 
+        <!--tableau des differents prix de tickets-->
+                <div class="input-container5" >
+                <p>Information 4</p>
+                <div class="input-pair5">
+                    <div class="input-group5">
+                        <p>Prix ticket</p>
+                        <input type="text" placeholder="Prix ticket" id="prixticket">
+                    </div>
+                    <div class="input-group5">
+                        <p>Frais Monetbil</p>
+                        <input type="text" placeholder="Frais Monetbil" id="fraismonetbil">
+                    </div>
+                    <div class="input-group5">
+                        <p>Frais NG_TICKET</p>
+                        <input type="text" placeholder="Frais NG_TICKET" id="fraisngticket">
+                    </div>
+                </div>
+                <div class="submit-container5">
+                    <button type="button" class="submit-btn5" id="submitBtn5">Enregistrer</button>
+                </div>
+            </div>
+
+        
+        <div class="input-container1" >
+            <div class="table-container">
+                <h3>PRIX ET TARIFICATIONS</h1>
+                <table>
+                <thead>
+                    <tr>
+                    <th>NG_TICKET</th>
+                    <th>Prix ticket(s)</th>
+                    <th>Frais Monetbil(s)</th>
+                    <th>Frais NG_TICKET(s)</th>
+                    <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody_6">
+                </tbody>
+                </table>
+            </div>
+        </div>
+
+
         <!-- Popup de résultats -->
         <div id="resultPopup" class="result-popup">
             <div class="popup-content">
@@ -190,6 +234,14 @@
                 <div id="resultContent4"></div>
                 <button class="submit-btn4" id="confirmSubmit4">Envoyer</button>
                 <button class="close-btn4">Fermer</button>
+            </div>
+        </div>
+        <div id="resultPopup5" class="result-popup5">
+            <div class="popup-content5">
+                <h3>Résumé des informations</h3>
+                <div id="resultContent5"></div>
+                <button class="submit-btn5" id="confirmSubmit5">Envoyer</button>
+                <button class="close-btn5">Fermer</button>
             </div>
         </div>
             <!-- Popup de résultats -->
@@ -223,11 +275,13 @@
             <button id="annuler5" class="btn5">ANNULER</button>
             <button id="acceder5" class="btn5">VALIDER</button>
             </div>
+            <div id="dialog6" class="dialog6">
+            <p>Etes vous sur de vouloir supprimer cette tarifications </p>
+            <button id="annuler6" class="btn6">ANNULER</button>
+            <button id="acceder6" class="btn6">VALIDER</button>
+            </div>
         </div>
     <script src="bunble_Page_controle.js" defer type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script>
-  emailjs.init("KpXE6Otgv0SmfP1IM"); // à mettre après avoir copié depuis EmailJS
-</script>
 </body>
 </html>

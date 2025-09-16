@@ -321,17 +321,161 @@ const firebaseConfig = {
                   });
                   
                   document.getElementById('acceder').addEventListener('click', ()=> {
+
+
+// Référence à la collection TRANSACTIONS
+const transactionsRef = collection(db, "TRANSACTIONS");
+
+// Créer la requête pour trouver les documents correspondants
+const q = query(transactionsRef, where("codebus", "==", bus.motpassebus));
+
+// Exécuter la requête
+getDocs(q).then((querySnapshot) => {
+    // Préparer un tableau pour stocker les promesses de suppression
+    const deletePromises = [];
+    
+    // Pour chaque document trouvé
+    querySnapshot.forEach((doc) => {
+        // Ajouter la promesse de suppression au tableau
+        deletePromises.push(deleteDoc(doc.ref));
+    });
+    
+    // Attendre que toutes les suppressions soient terminées
+    return Promise.all(deletePromises);
+})
+.then(() => {
+    console.log("Toutes les transactions ont été supprimées avec succès");
+})
+.catch((error) => {
+    console.error("Erreur lors de la suppression des transactions :", error);
+});
+
+
+// Référence à la collection controle
+const voyageurRef = collection(db, "CONTROLE");
+const voyageurRef1 = doc(voyageurRef, "PAIEMENT");
+const voyageurRef2 = collection(voyageurRef1,"INFORMATION");
+
+// Créer la requête pour trouver les documents correspondants
+const qvoyageur = query(voyageurRef2, where("code_bus", "==", bus.motpassebus));
+
+// Exécuter la requête
+getDocs(qvoyageur).then((querySnapshot) => {
+    // Préparer un tableau pour stocker les promesses de suppression
+    const deletePromisesvoyageur = [];
+    
+    // Pour chaque document trouvé
+    querySnapshot.forEach((doc) => {
+        // Ajouter la promesse de suppression au tableau
+        deletePromisesvoyageur.push(deleteDoc(doc.ref));
+    });
+    
+    // Attendre que toutes les suppressions soient terminées
+    return Promise.all(deletePromisesvoyageur);
+})
+.then(() => {
+    console.log("Toutes les transactions ont été supprimées avec succès");
+})
+.catch((error) => {
+    console.error("Erreur lors de la suppression des transactions :", error);
+});
+
+
+  
+// Référence à la collection commentaires voyageurs
+const commentaireRef = collection(db,"AGENCES");
+const commentaireRef1 = doc(commentaireRef,bus.uidagence);
+const commentaireRef2 = collection(commentaireRef1,bus.nomagence);
+const commentaireRef3 = doc(commentaireRef2,"COMMENTAIRE_UTILISATEUR");
+const commentaireRef4 = collection(commentaireRef3,"DETAILS");
+
+// Créer la requête pour trouver les documents correspondants
+const qcommentaire = query(commentaireRef4, where("motpassebus", "==", bus.motpassebus));
+
+// Exécuter la requête
+getDocs(qcommentaire).then((querySnapshot) => {
+    // Préparer un tableau pour stocker les promesses de suppression
+    const deletePromisescommanetaire = [];
+    
+    // Pour chaque document trouvé
+    querySnapshot.forEach((doc) => {
+        // Ajouter la promesse de suppression au tableau
+        deletePromisescommanetaire.push(deleteDoc(doc.ref));
+    });
+    
+    // Attendre que toutes les suppressions soient terminées
+    return Promise.all(deletePromisescommanetaire);
+})
+.then(() => {
+    console.log("Toutes les transactions ont été supprimées avec succès");
+})
+.catch((error) => {
+    console.error("Erreur lors de la suppression des transactions :", error);
+});
+
+
+
+// Référence à la collection assistant agences check
+
+const agenceRef = collection(db,"AGENCES");
+const agenceRef1 = doc(agenceRef,uid);
+const agenceRef2 = collection(agenceRef1,info.agence);
+const agenceRef3 = doc(agenceRef2,"ASSISTANT_AGENCES");
+const agenceRef4 = collection(agenceRef3,"INFORMATION");
+
+const qagenceRef = query(agenceRef4, where("code_activation", "==",uid));
+
+getDocs(qagenceRef).then((querySnapshot) => {
+              querySnapshot.forEach((docte) =>{
+
+const utilisateurcheckRef = collection(db,"ASSISTANT_AGENCES");
+const utilisateurcheckRef1 = doc(utilisateurcheckRef,docte.data().uidassistant);
+const utilisateurcheckRef2 = collection(utilisateurcheckRef1,"UTILISATEUR_CHECK");
+
+// Créer la requête pour trouver les documents correspondants
+const qutilisateurcheckRef = query(utilisateurcheckRef2, where("codebus", "==", bus.motpassebus));
+
+// Exécuter la requête
+getDocs(qutilisateurcheckRef).then((querySnapshot) => {
+    // Préparer un tableau pour stocker les promesses de suppression
+    const deletePromisesutilisateurcheck = [];
+    
+    // Pour chaque document trouvé
+    querySnapshot.forEach((doc) => {
+        // Ajouter la promesse de suppression au tableau
+        deletePromisesutilisateurcheck.push(deleteDoc(doc.ref));
+    });
+    
+    // Attendre que toutes les suppressions soient terminées
+    return Promise.all(deletePromisesutilisateurcheck);
+})
+.then(() => {
+    console.log("Toutes les transactions ont été supprimées avec succès");
+})
+.catch((error) => {
+    console.error("Erreur lors de la suppression des transactions :", error);
+});
+
+
+      })
+    })
+
+
+
+
+
                     const bussup = doc(busend,iddocbus);
                     deleteDoc(bussup).then(()=>{
 
                     });
+
                     document.getElementById('dialog').style.display = 'none';
                         onSnapshot(collection(busthird, "DETAILS"), (snapshot) => {
                         const users = snapshot.docs.map(doc => doc.data());
                         console.log("Données à jour :", users);
                         setTimeout(function() {
                         location.reload(true);
-                      }, 1800);
+                      }, 4000);
                       });
                   });                 
                 });
@@ -541,11 +685,14 @@ const firebaseConfig = {
                       if(user.check == "VALIDER"){
                         
                         bouton_etat.style.backgroundColor= " #F96A24";
-                        bouton_etat.style.boxShadow="3px 3px 3px #efdcd2";
+                        bouton_etat.style.boxShadow="3px 3px 3px #cc8965ff";
                       }else if(user.check == "INVALIDER"){
                       
                         bouton_etat.style.backgroundColor= " #E8E8E8";
                         bouton_etat.style.boxShadow="3px 3px 3px #e4e2de";
+                      }else if(user.check == "RETIRER"){
+                        bouton_etat.style.backgroundColor= " #ff0303ff";
+                        bouton_etat.style.boxShadow="3px 3px 3px #ac3f3fff";
                       }
             
                     });
@@ -1323,6 +1470,248 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Mettre à jour l'élément actif lors du défilement
     window.addEventListener('popstate', setActiveLink);
+});
+
+
+
+
+
+
+
+auth.onAuthStateChanged(user =>{
+  if(user){
+      const uid = user.uid;
+      const infoRef =collection(db,"AGENCES");
+      const final = doc(infoRef,uid);
+      const but = collection(final,"INFORMATION");
+ getDocs(but).then(querySnapshot =>{
+  querySnapshot.forEach(doct =>{
+      const info = doct.data();
+
+      if(info.status == "valider"){
+      const assistantagencesRef = collection(db,"AGENCES");
+      const assistantagencesfirst = doc(assistantagencesRef,uid);
+      const assistantagencessecond = collection(assistantagencesfirst,info.agence);
+      const assistantagencesfirst1 = doc(assistantagencessecond,"ASSISTANT_AGENCES");
+      const assistantagencessecond2 = collection(assistantagencesfirst1,"INFORMATION");
+  
+      getDocs(assistantagencessecond2).then((querySnapshot) => {
+        
+        const tbody_7 =document.getElementById("tbody_7");
+        querySnapshot.forEach((docte) =>{
+
+          const docassistantagences = docte.id;
+  
+          const tr = document.createElement("tr");
+  
+          const tdnomagence = document.createElement("td");
+          const tdnom = document.createElement("td");
+          const tdemail = document.createElement("td");
+          const tdstatus = document.createElement("td");
+          const tdaction1assistantagences = document.createElement("td");
+
+          
+          tdnomagence.textContent = docte.data().nomagence;
+          tdnom.textContent = docte.data().nom;
+          tdemail.textContent = docte.data().email;
+          tdstatus.textContent = docte.data().status;
+  
+        
+          const bouton_fermerassistantagences = document.createElement("button");
+          bouton_fermerassistantagences.textContent = "Fermer";
+          bouton_fermerassistantagences.style.width= "80px";
+          bouton_fermerassistantagences.style.fontWeight="bold";
+          bouton_fermerassistantagences.style.borderRadius= "10px";
+          bouton_fermerassistantagences.style.color="black";
+          bouton_fermerassistantagences.style.backgroundColor= "#f51414ff";
+          bouton_fermerassistantagences.style.boxShadow="3px 3px 3px  #d22e00ff";
+
+          const bouton_ouvrirassistantagences = document.createElement("button");
+          bouton_ouvrirassistantagences.textContent = "Ouvrir";
+          bouton_ouvrirassistantagences.style.width= "80px";
+          bouton_ouvrirassistantagences.style.fontWeight="bold";
+          bouton_ouvrirassistantagences.style.borderRadius= "10px";
+          bouton_ouvrirassistantagences.style.color="black";
+          bouton_ouvrirassistantagences.style.backgroundColor= "#06f039ff";
+          bouton_ouvrirassistantagences.style.boxShadow="3px 3px 3px  #3ccf07ff";
+
+          const bouton_supassistantagences = document.createElement("button");
+          bouton_supassistantagences.textContent = "Supprimer";
+          bouton_supassistantagences.style.width= "80px";
+          bouton_supassistantagences.style.fontWeight="bold";
+          bouton_supassistantagences.style.borderRadius= "10px";
+          bouton_supassistantagences.style.color="black";
+          bouton_supassistantagences.style.backgroundColor= "#E8E8E8";
+          bouton_supassistantagences.style.boxShadow="3px 3px 3px  #e4e2de";
+
+
+
+  
+          tr.appendChild(tdnomagence);
+          tr.appendChild(tdnom);
+          tr.appendChild(tdemail);
+          tr.appendChild(tdstatus);
+          tr.appendChild(bouton_fermerassistantagences);
+          tr.appendChild(bouton_ouvrirassistantagences);
+          tr.appendChild(bouton_supassistantagences);
+  
+          tbody_7.appendChild(tr);
+
+                    //bouton fermer
+          bouton_fermerassistantagences.addEventListener('click', function() {
+            document.getElementById('dialog4').style.display = 'block';
+
+            document.getElementById('annuler4').addEventListener('click', function() {
+              document.getElementById('dialog4').style.display = 'none';
+            });
+            
+            document.getElementById('acceder4').addEventListener('click', function() {
+              
+            const assistantagencesfermer0sup = doc(assistantagencessecond2,docassistantagences);
+
+            updateDoc(assistantagencesfermer0sup,{
+                  status : "fermer"
+                });
+            
+            const assistantagencesfermer1 = collection(db,"ASSISTANT_AGENCES");
+            const assistantagencesfermer2 = doc(assistantagencesfermer1,docte.data().uidassistant);
+            const assistantagencesfermer3 = collection(assistantagencesfermer2,"INFORMATION");
+  
+            const difassistantagencesfermer = query(assistantagencesfermer3,where( "motpasse","==",docte.data().motpasse));
+  
+            getDocs(difassistantagencesfermer).then((querySnapshotdest) =>{
+              querySnapshotdest.forEach((docdest) =>{
+                const iddocassistantagencesfermer = docdest.id;
+  
+                const assistantagencesfermer = doc(assistantagencesfermer3,iddocassistantagencesfermer);
+
+                updateDoc(assistantagencesfermer,{
+                  status : "fermer"
+                });
+  
+              });
+            });
+              document.getElementById('dialog4').style.display = 'none';
+                                    setTimeout(function() {
+                        location.reload(true);
+                      }, 1800);
+            });
+
+          });
+
+
+
+                              //bouton ouvrir
+          bouton_ouvrirassistantagences.addEventListener('click', function() {
+            document.getElementById('dialog5').style.display = 'block';
+
+            document.getElementById('annuler5').addEventListener('click', function() {
+              document.getElementById('dialog5').style.display = 'none';
+            });
+            
+            document.getElementById('acceder5').addEventListener('click', function() {
+              
+            const assistantagencesouvrir0sup = doc(assistantagencessecond2,docassistantagences);
+
+            updateDoc(assistantagencesouvrir0sup,{
+                  status : "activer"
+                });
+            
+            const assistantagencesouvrir1 = collection(db,"ASSISTANT_AGENCES");
+            const assistantagencesouvrir2 = doc(assistantagencesouvrir1,docte.data().uidassistant);
+            const assistantagencesouvrir3 = collection(assistantagencesouvrir2,"INFORMATION");
+  
+            const difassistantagencesouvrir = query(assistantagencesouvrir3,where( "motpasse","==",docte.data().motpasse));
+  
+            getDocs(difassistantagencesouvrir).then((querySnapshotdest) =>{
+              querySnapshotdest.forEach((docdest) =>{
+                const iddocassistantagencesouvrir = docdest.id;
+  
+                const assistantagencesouvrir = doc(assistantagencesouvrir3,iddocassistantagencesouvrir);
+
+                updateDoc(assistantagencesouvrir,{
+                  status : "activer"
+                });
+  
+              });
+            });
+              document.getElementById('dialog5').style.display = 'none';
+                                    setTimeout(function() {
+                        location.reload(true);
+                      }, 1800);
+            });
+
+          });
+
+
+          
+          //bouton supprimer
+          bouton_supassistantagences.addEventListener('click', function() {
+            document.getElementById('dialog').style.display = 'block';
+
+            document.getElementById('annuler').addEventListener('click', function() {
+              document.getElementById('dialog').style.display = 'none';
+            });
+            
+            document.getElementById('acceder').addEventListener('click', function() {
+
+              
+
+
+               const assistantagencessup1 = collection(db,"ASSISTANT_AGENCES");
+            const assistantagencessup2 = doc(assistantagencessup1,docte.data().uidassistant);
+            const assistantagencessup3 = collection(assistantagencessup2,"INFORMATION");
+  
+  
+            getDocs(assistantagencessup3).then((querySnapshotdest) =>{
+              querySnapshotdest.forEach((docdest) =>{
+                const iddocassistantagencessup = docdest.id;
+  
+                const assistantagencessup = doc(assistantagencessup3,iddocassistantagencessup);
+                
+                deleteDoc(assistantagencessup).then(()=>{
+      
+                });
+  
+              });
+            });
+
+            const assistantagencessup0sup = doc(assistantagencessecond2,docassistantagences);
+
+                deleteDoc(assistantagencessup0sup).then(()=>{
+      
+                });
+            
+           
+              document.getElementById('dialog').style.display = 'none';
+                                    setTimeout(function() {
+                        location.reload(true);
+                      }, 2000);
+            });
+
+          });
+
+
+
+
+          
+        });
+      });
+      }else if(info.status == "invalider"){
+            document.getElementById("nom").innerHTML = "";
+
+      }
+
+
+
+
+  });
+ }).catch(error =>{
+  console.log('Aucune utilisateur connecte ',error);
+ });
+  }else{
+      console.log('Aucun utilisateur connecte');
+  }
 });
 
 

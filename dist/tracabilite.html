@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracabilité - NG Ticket</title>
+    <link rel="stylesheet" href="tracabilite.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Ajout de Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="tracabilite.html">NG Ticket</a>
+            </div>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <div class="nav-links" id="nav-links">
+                <a href="Page_controle.html">Controle</a>
+                <a href="tracabilite.html" class="active">Traçabilité</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Tracabilité des Agences</h1>
+        <div id="agences-list" class="agences-container">
+            <div class="search-container">
+                <input type="text" id="searchBus" placeholder="Rechercher un bus..." class="search-input">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            <div class="loading">
+                <i class="fas fa-spinner fa-spin"></i> Chargement des agences...
+            </div>
+        </div>
+    </main>
+
+    <script src="bunble_tracabilite.js" defer type="module"></script>
+</body>
+</html>

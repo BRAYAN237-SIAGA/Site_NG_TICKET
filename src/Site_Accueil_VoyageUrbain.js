@@ -811,6 +811,119 @@ const firebaseConfig = {
 
 
 
+                //pour la quartierarrive
+         // Référence à la collection produits
+
+        const tarificationsfirst = collection(db,"CONTROLE");
+        const tarificationsseconf = doc(tarificationsfirst,"TARIFICATIONS");
+        const tarificationsthird = collection(tarificationsseconf,"NG_TICKET");    
+
+        // Éléments du DOM
+        const productInput7 = document.getElementById('prix_ticket');
+        const dropdown7 = document.getElementById('dropdown7');
+
+        // Charger les produits au clic sur le champ
+        productInput7.addEventListener('click', function(e) {
+            e.stopPropagation();
+            toggleDropdown7();
+        });
+
+        // Fermer le dropdown en cliquant à l'extérieur
+        document.addEventListener('click', function() {
+            hideDropdown7();
+        });
+
+        // Empêcher la fermeture quand on clique dans le dropdown
+        dropdown7.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+
+        // Fonction pour afficher/masquer le dropdown
+        function toggleDropdown7() {
+            if (dropdown7.style.display === 'block') {
+                hideDropdown7();
+            } else {
+                loadProducts7();
+                showDropdown7();
+            }
+        }
+
+        // Fonction pour charger les produits
+        async function loadProducts7() {
+            // Ne recharger que si la liste est vide
+            if (dropdown7.children.length === 0) {
+                showLoading7();
+                
+                try {
+                    const snapshot = await getDocs(tarificationsthird);
+                    const products7 = [];
+                    
+                    snapshot.forEach(doc => {
+                        products7.push({...doc.data() });
+                    });
+
+                    displayProducts7(products7);
+                } catch (error) {
+                    console.error("Erreur:", error);
+                    dropdown7.innerHTML = '<div class="loading">Erreur de chargement</div>';
+                }
+            }
+        }
+
+        // Afficher les produits dans le dropdown
+        function displayProducts7(products7) {
+            dropdown7.innerHTML = '';
+            
+            if (products7.length === 0) {
+                dropdown7.innerHTML = '<div class="loading">Aucun prix trouvé</div>';
+                return;
+            }
+
+            products7.forEach(product7 => {
+                const item7 = document.createElement('div');
+                item7.className = 'dropdown-item';
+                
+                // Afficher le nom du produit (ajustez selon votre structure)
+                const displayText7 = product7.prixticket ;
+                item7.textContent = displayText7;
+                
+                item7.addEventListener('click', () => {
+                    selectProduct7(product7, displayText7);
+                });
+                
+                dropdown7.appendChild(item7);
+            });
+        }
+
+        // Sélectionner un produit
+        function selectProduct7(product7, displayText7) {
+            productInput7.value = displayText7;
+            hideDropdown7();            
+            // Stocker l'ID du produit sélectionné (utile pour les formulaires)
+            productInput7.dataset.productId = product7.id;
+        }
+
+        // Fonctions utilitaires
+        function showLoading7() {
+            dropdown7.innerHTML = '<div class="loading">Chargement...</div>';
+            showDropdown7();
+        }
+
+        function showDropdown7() {
+            dropdown7.style.display = 'block';
+        }
+
+        function hideDropdown7() {
+            dropdown7.style.display = 'none';
+        }
+
+
+
+
+
+
+
+
 
                     document.getElementById("nom").innerHTML = info.agence;
 
@@ -849,6 +962,30 @@ const firebaseConfig = {
                         const finalRef = collection(sousRef,info.agence);
                         const ref = doc(finalRef,"BUS");
                         const refdetails = collection(ref,"DETAILS");
+
+                        const docRefcontrole = collection(db,"CONTROLE");
+                        const sousRefcontrole = doc(docRefcontrole,"BUS");
+                        const finalRefcontrole = collection(sousRefcontrole,"NG_TICKET");
+
+                        addDoc(finalRefcontrole,{
+                                immatriculation : formData.immatriculation,
+                            nomagence : info.agence,
+                            chauffeur : formData.chauffeur,
+                            categories :formData.categorie,
+                            trajet :formData.trajet,
+                            ville_depart :formData.ville_depart,
+                            quartier_depart : formData.quartier_depart,
+                            ville_arriver : formData.ville_arriver,
+                            quartier_arriver :formData.quartier_arriver,
+                            prix_ticket : parseInt(formData.prix_ticket),
+                            heure_depart : formData.heure_depart,
+                            nombre_siege :parseInt(formData.nombre_siege),
+                            date_voyage: formData.date_voyage,
+                            uidagence: uid,
+                            motpassebus: randomSum,
+                            etat:formData.etat,
+                            numerobus:formData.numerobus,
+                            })
         
                         addDoc(refdetails,{
                             immatriculation : formData.immatriculation,
@@ -871,6 +1008,7 @@ const firebaseConfig = {
                             status:"ouvert",
                             numerobus:formData.numerobus,
                         },{merge : true}).then(() =>
+                            
                             document.querySelectorAll('input').forEach(input => {
                                 input.value = '';
                             })

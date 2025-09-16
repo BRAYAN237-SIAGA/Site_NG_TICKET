@@ -54,10 +54,10 @@ module.exports ={
 };
 module.exports ={
     mode : "development",
-    entry : "./src/Formulaire.js",
+    entry : "./src/Page_couverture.js",
     output:{
         path : path.resolve(__dirname,"dist"),
-        filename : "bunble_formulaire.js"
+        filename : "bunble_Page_couverture.js"
     },
     devtool : "eval-cheap-source-map",
     watch:true,
@@ -69,16 +69,6 @@ module.exports ={
     output:{
         path : path.resolve(__dirname,"dist"),
         filename : "bunble_Page_controle.js"
-    },
-    devtool : "eval-cheap-source-map",
-    watch:true,
-};
-module.exports ={
-    mode : "development",
-    entry : "./src/Page_couverture.js",
-    output:{
-        path : path.resolve(__dirname,"dist"),
-        filename : "bunble_Page_couverture.js"
     },
     devtool : "eval-cheap-source-map",
     watch:true,
@@ -100,6 +90,26 @@ module.exports ={
     output:{
         path : path.resolve(__dirname,"dist"),
         filename : "bunble_Visualisation.js"
+    },
+    devtool : "eval-cheap-source-map",
+    watch:true,
+};
+module.exports ={
+    mode : "development",
+    entry : "./src/tracabilite.js",
+    output:{
+        path : path.resolve(__dirname,"dist"),
+        filename : "bunble_tracabilite.js"
+    },
+    devtool : "eval-cheap-source-map",
+    watch:true,
+};
+module.exports ={
+    mode : "development",
+    entry : "./src/Formulaire.js",
+    output:{
+        path : path.resolve(__dirname,"dist"),
+        filename : "bunble_formulaire.js"
     },
     devtool : "eval-cheap-source-map",
     watch:true,

@@ -1,0 +1,876 @@
+:root {
+    --primary: #F96A24;
+    --light: #E8E8E8;
+    --dark: #0F0604;
+    --white: #FFFFFF;
+    --beige: #DCC9C2;
+    --success: #28a745;
+    --gray: #6c757d;
+    --light-gray: #f8f9fa;
+}
+/* Reset et styles de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: var(--light);
+    text-align: center;
+}
+
+/* Header */
+header {
+    background-color: var(--white);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+/* Navigation */
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Logo */
+.logo a {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--dark);
+    text-decoration: none;
+}
+
+/* Liens de navigation */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: var(--dark);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+    position: relative;
+}
+.nav-links a.active {
+    color: var(--primary);
+    font-weight: 600;
+    position: relative;
+}
+
+.nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary);
+    border-radius: 3px;
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+/* Animation du soulignement */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary);
+    bottom: -5px;
+    left: 0;
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+/* Bouton menu mobile */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--dark);
+    transition: all 0.3s ease;
+}
+
+/* Styles pour mobile */
+@media (max-width: 992px) {
+    .menu-toggle {
+        display: flex;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        max-width: 300px;
+        height: 100vh;
+        background-color: var(--white);
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 80px 20px 30px;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease-in-out;
+        overflow-y: auto;
+    }
+    
+    .nav-links.active {
+        right: 0;
+    }
+    
+    .nav-links a {
+        width: 100%;
+        padding: 15px 0;
+        border-bottom: 1px solid #eee;
+        display: block;
+    }
+}
+
+/* Animation du bouton hamburger */
+.menu-toggle.active .bar:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.menu-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active .bar:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Style pour le bouton hamburger actif */
+.menu-toggle.active {
+    background-color: transparent;
+}
+
+.menu-toggle.active .bar {
+    background-color: var(--dark);
+}
+
+/* Reset et styles de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--dark);
+    background-color: var(--light);
+    padding-top: 80px;
+}
+
+/* Header et Navigation */
+header {
+    background-color: var(--white);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.logo a {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--dark);
+    text-decoration: none;
+}
+
+/* Contenu principal */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    color: var(--primary);
+    margin-bottom: 30px;
+    text-align: center;
+    padding: 20px 0;
+    border-bottom: 2px solid var(--beige);
+}
+
+/* Barre de recherche */
+.search-container {
+    margin: 20px auto;
+    position: relative;
+    max-width: 400px;
+    width: 100%;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 45px 12px 20px;
+    border: 2px solid #4a90e2;
+    border-radius: 25px;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-input:focus {
+    border-color: #357ABD;
+    box-shadow: 0 0 8px rgba(74, 144, 226, 0.6);
+    background-color: white;
+}
+
+.search-icon {
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #4a90e2;
+    font-size: 16px;
+}
+
+/* Conteneur des agences */
+.agences-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Carte d'agence */
+.agence-card {
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.agence-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* En-tête de la carte */
+.agence-header {
+    margin-bottom: 5px;
+}
+
+.agence-name {
+    color: var(--primary);
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--light);
+}
+
+.agence-name i {
+    color: var(--primary);
+}
+
+.agence-location {
+    color: var(--gray);
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 5px 0 5px 20px;
+    padding: 8px 0;
+    position: relative;
+}
+
+.agence-location:before {
+    content: '•';
+    color: var(--primary);
+    position: absolute;
+    left: -15px;
+}
+
+.agence-location i {
+    color: var(--primary);
+    font-size: 0.8rem;
+}
+
+/* Styles pour la section de date */
+.date-section {
+    background-color: var(--primary);
+    color: white;
+    padding: 12px 20px;
+    margin: 20px 0 0 0;
+    border-radius: 6px 6px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.date-section .badge {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+/* Styles pour la liste des bus */
+.bus-list {
+    border: 1px solid #e0e0e0;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    overflow: hidden;
+    margin: 0 0 30px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.bus-list:last-child {
+    margin-bottom: 0;
+}
+
+.bus-list-content {
+    padding: 0;
+    max-height: 500px;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+/* Style pour la barre de défilement */
+.bus-list-content::-webkit-scrollbar {
+    height: 8px;
+    width: 8px;
+}
+
+.bus-list-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.bus-list-content::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.bus-list-content::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.bus-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
+    table-layout: auto;
+    min-width: 100%;
+}
+
+/* Styles de base pour les cellules */
+.bus-table th, 
+.bus-table td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: middle;
+    white-space: normal;
+    word-wrap: break-word;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Largeurs minimales pour les colonnes */
+.bus-table th:nth-child(1),
+.bus-table td:nth-child(1) { min-width: 120px; }
+
+.bus-table th:nth-child(2),
+.bus-table td:nth-child(2) { min-width: 80px; }
+
+.bus-table th:nth-child(3),
+.bus-table td:nth-child(3) { min-width: 100px; }
+
+.bus-table th:nth-child(4),
+.bus-table td:nth-child(4) { min-width: 120px; }
+
+.bus-table th:nth-child(5),
+.bus-table td:nth-child(5) { min-width: 100px; }
+
+.bus-table th:nth-child(6),
+.bus-table td:nth-child(6) { min-width: 100px; }
+
+.bus-table th:nth-child(7),
+.bus-table td:nth-child(7) { min-width: 100px; }
+
+.bus-table th:nth-child(8),
+.bus-table td:nth-child(8) { min-width: 100px; }
+
+.bus-table th:nth-child(9),
+.bus-table td:nth-child(9) { min-width: 100px; }
+
+.bus-table th:nth-child(10),
+.bus-table td:nth-child(10) { min-width: 100px; }
+
+.bus-table th:nth-child(11),
+.bus-table td:nth-child(11) { min-width: 60px; }
+
+.bus-table th:nth-child(12),
+.bus-table td:nth-child(12) { min-width: 80px; }
+
+.bus-table th:nth-child(13),
+.bus-table td:nth-child(13) { min-width: 80px; }
+
+/* Styles pour l'en-tête du tableau */
+.bus-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #555;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    white-space: nowrap;
+}
+
+/* Style pour les lignes paires/impaires */
+.bus-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.bus-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Style pour les cellules avec du texte long */
+.bus-table td {
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+/* Style pour les boutons d'action */
+.btn-delete {
+    background: none;
+    border: none;
+    color: #dc3545;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 1.1em;
+    transition: color 0.2s;
+}
+
+.btn-delete:hover {
+    color: #bd2130;
+}
+
+/* Styles pour le bouton Voir voyageurs */
+.btn-view {
+    background-color: #17a2b8;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-right: 5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: background-color 0.2s;
+}
+
+.btn-view i {
+    font-size: 0.9em;
+}
+
+.btn-view:hover {
+    background-color: #138496;
+}
+
+/* Styles pour le modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: auto;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 1000px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 15px;
+}
+
+.modal-header h3 {
+    margin: 0;
+    color: #333;
+}
+
+.close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+}
+
+.modal-body {
+    overflow-y: auto;
+    flex: 1;
+}
+
+/* Styles pour le tableau des voyageurs */
+.voyageurs-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 0.9em;
+}
+
+.voyageurs-table th,
+.voyageurs-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.voyageurs-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #555;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.voyageurs-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.voyageurs-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+    }
+    
+    .voyageurs-table {
+        display: block;
+        overflow-x: auto;
+    }
+}
+
+.bus-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #555;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.bus-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+.loading-bus {
+    padding: 20px;
+    text-align: center;
+    color: var(--gray);
+    font-size: 0.95em;
+}
+
+.loading-bus i {
+    margin-right: 8px;
+    color: var(--primary);
+}
+
+/* Styles pour les destinations */
+.destinations-list {
+    margin-top: 15px;
+}
+
+.destination-item {
+    margin-bottom: 15px;
+    border: 1px solid var(--light);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.destination-header {
+    padding: 12px 15px;
+    background-color: #f8f9fa;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.2s;
+}
+
+.destination-header:hover {
+    background-color: #e9ecef;
+}
+
+.destination-header .arrow {
+    margin-left: auto;
+    transition: transform 0.3s;
+}
+
+.destination-header.active .arrow {
+    transform: rotate(180deg);
+}
+
+/* Conteneur des bus */
+.bus-container {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background-color: white;
+}
+
+.bus-container.show {
+    max-height: 1000px;
+    padding: 15px;
+}
+
+.loading-bus {
+    padding: 15px;
+    text-align: center;
+    color: var(--gray);
+}
+
+/* Tableau des bus */
+.bus-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+
+.bus-table th, .bus-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.bus-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+.bus-table tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* Bouton de suppression */
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.85rem;
+    transition: background-color 0.2s;
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+}
+
+.btn-delete i {
+    font-size: 0.9em;
+}
+
+/* Message quand pas de bus */
+.no-bus {
+    padding: 15px;
+    text-align: center;
+    color: var(--gray);
+    font-style: italic;
+}
+
+/* État de chargement */
+.loading {
+    text-align: center;
+    padding: 40px;
+    color: var(--gray);
+    font-size: 1.1rem;
+}
+
+.loading i {
+    margin-right: 10px;
+    color: var(--primary);
+    animation: spin 1s linear infinite;
+}
+
+/* Animation de chargement */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Message d'erreur */
+.error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    margin: 20px 0;
+    border: 1px solid #f5c6cb;
+}
+
+/* Styles responsifs */
+@media (max-width: 768px) {
+    .agence-card {
+        padding: 15px;
+    }
+    
+    .agence-name {
+        font-size: 1.1rem;
+    }
+    
+    .agence-location {
+        font-size: 0.9rem;
+    }
+}
+
+/* Styles pour la navigation */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--dark);
+    margin: 3px 0;
+    transition: all 0.3s ease;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: var(--dark);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--primary);
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background-color: var(--white);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.3s ease;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .nav-links.active {
+        right: 0;
+    }
+    
+    .menu-toggle.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    
+    .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .menu-toggle.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}
