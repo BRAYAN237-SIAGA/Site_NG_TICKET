@@ -183,7 +183,7 @@ header nav {
     border-radius: 10px;
     margin-top: 85px;
 }
-.input-container1,.input-container2,.input-container3,.input-container4,.input-container5 {
+.input-container1,.input-container2,.input-container3,.input-container4,.input-container5,.input-container6 {
     margin: 20px;
     padding: 15px;
     background-color: #DCC9C2;
@@ -194,7 +194,7 @@ th{
     width: 95px;
 }
 
-.dialog,.dialog1,.dialog2,.dialog3,.dialog4,.dialog5,.dialog6 {
+.dialog,.dialog1,.dialog2,.dialog3,.dialog4,.dialog5,.dialog6,.dialog7 {
 	position: fixed;
 	top: 50%;
 	left: 50%;
@@ -207,7 +207,7 @@ th{
 	display: none;
 }
 
-.btn,.btn1,.btn2,.btn3,.btn4,.btn5,.btn6 {
+.btn,.btn1,.btn2,.btn3,.btn4,.btn5,.btn6,.btn7 {
 	background-color: #E8E8E8;
 	color: black;
 	padding: 10px 20px;
@@ -216,16 +216,18 @@ th{
     font-weight: bold;
 	cursor: pointer;
 }
-.btn:hover,.btn1:hover,.btn2:hover,.btn3:hover,.btn4:hover,.btn5:hover,.btn6:hover {
+.btn:hover,.btn1:hover,.btn2:hover,.btn3:hover,
+.btn4:hover,.btn5:hover,.btn6:hover,.btn7:hover {
 	background-color: #E8E8E8;
 }
 
-#annuler,#annuler1,#annuler2 ,#annuler3,#annuler4,#annuler5,#annuler6{
+#annuler,#annuler1,#annuler2 ,#annuler3,#annuler4,#annuler5,#annuler6,#annuler7{
 	background-color: #F96A24;
     font-weight: bold;
 }
 
-#annuler:hover,#annuler1:hover,#annuler2:hover,#annuler3:hover ,#annuler4:hover,#annuler5:hover,#annuler6:hover {
+#annuler:hover,#annuler1:hover,#annuler2:hover,#annuler3:hover ,#annuler4:hover
+,#annuler5:hover,#annuler6:hover,#annuler7:hover {
 	background-color: #F96A24;
 }
 
@@ -262,12 +264,12 @@ th{
       }
     }
 
-    .submit-container,.submit-container3,.submit-container4,.submit-container5 {
+    .submit-container,.submit-container3,.submit-container4,.submit-container5,.submit-container6 {
     text-align: center;
     margin-top: 20px;
 }
 
-.submit-btn,.submit-btn3,.submit-btn4,.submit-btn5 {
+.submit-btn,.submit-btn3,.submit-btn4,.submit-btn5,.submit-btn6 {
     padding: 10px 30px;
     background-color: #F96A24;
     color: white;
@@ -277,11 +279,11 @@ th{
     font-size: 1em;
 }
 
-.submit-btn:hover,.submit-btn3:hover,.submit-btn4:hover,.submit-btn5:hover {
+.submit-btn:hover,.submit-btn3:hover,.submit-btn4:hover,.submit-btn5:hover,.submit-btn6:hover {
     background-color: #E05A1A;
 }
 
-.result-popup,.result-popup3,.result-popup4,.result-popup5 {
+.result-popup,.result-popup3,.result-popup4,.result-popup5,.result-popup6 {
     display: none;
     position: fixed;
     top: 0;
@@ -294,7 +296,7 @@ th{
     z-index: 1000;
 }
 
-.popup-content,.popup-content3 ,.popup-content4,.popup-content5 {
+.popup-content,.popup-content3 ,.popup-content4,.popup-content5,.popup-content6 {
     background-color: #FFFFFF;
     padding: 20px;
     border-radius: 10px;
@@ -305,20 +307,23 @@ th{
     border: 2px solid #F96A24;
 }
 
-.popup-content .submit-btn,.popup-content3 .submit-btn3 ,.popup-content4 .submit-btn4,.popup-content5 .submit-btn5 {
+.popup-content .submit-btn,.popup-content3 .submit-btn3 ,.popup-content4 .submit-btn4,.popup-content5 .submit-btn5,.popup-content6 .submit-btn6 {
     margin-right: 10px;
     background-color: #F96A24;
 }
 
-.popup-content .submit-btn:hover,.popup-content3 .submit-btn3:hover,.popup-content4 .submit-btn4:hover,.popup-content5 .submit-btn5:hover {
+.popup-content .submit-btn:hover
+,.popup-content3 .submit-btn3:hover,.popup-content4 .submit-btn4:hover,
+.popup-content5 .submit-btn5:hover,.popup-content6 .submit-btn6:hover{
     background-color: #E05A1A;
 }
 
-.popup-content .close-btn,.popup-content3 .close-btn3,.popup-content4 .close-btn4,.popup-content5 .close-btn5 {
+.popup-content .close-btn,.popup-content3 .close-btn3,
+.popup-content4 .close-btn4,.popup-content5 .close-btn5,.popup-content6 .close-btn6 {
     background-color: #0F0604;
 }
 
-.result-item,.result-item3 ,.result-item4,.result-item5{
+.result-item,.result-item3 ,.result-item4,.result-item5,.result-item6{
     margin-bottom: 15px;
     padding-bottom: 15px;
     border-bottom: 1px solid #eee;
@@ -326,12 +331,12 @@ th{
     border-left: 3px solid #F96A24;
 }
 
-.result-item h4,.result-item3 h4,.result-item4 h4,.result-item5 h4 {
+.result-item h4,.result-item3 h4,.result-item4 h4,.result-item5 h4,.result-item5 h4 {
     margin-top: 0;
     color: #F96A24;
 }
 
-.close-btn,.close-btn3,.close-btn4,.close-btn5 {
+.close-btn,.close-btn3,.close-btn4,.close-btn5,.close-btn6 {
     margin-top: 20px;
     padding: 8px 20px;
     background-color: #0F0604;
@@ -341,7 +346,7 @@ th{
     cursor: pointer;
 }
 
-.close-btn:hover,.close-btn3:hover,.close-btn4:hover,.close-btn5:hover {
+.close-btn:hover,.close-btn3:hover,.close-btn4:hover,.close-btn5:hover,.close-btn6:hover {
     background-color: #333;
 }
 
@@ -354,7 +359,7 @@ th{
     text-align: center;
     font-weight: bold;
 }
-.input-container ,.input-container1,.input-container3,.input-container4,.input-container5{
+.input-container ,.input-container1,.input-container3,.input-container4,.input-container5,.input-container6{
     padding: 15px;
     margin-bottom: 15px;
     border-radius: 10px;
@@ -367,18 +372,18 @@ th{
     background-color: #D3C0B9;
 }
 
-.input-container1 label,.input-container3 label,.input-container4 label,.input-container5 label{
+.input-container1 label,.input-container3 label,.input-container4 label,.input-container5 label,.input-container6 label{
     display: block;
     margin-bottom: 10px;
     font-weight: bold;
 }
-.input-pair,.input-pair3,.input-pair4,.input-pair5 {
+.input-pair,.input-pair3,.input-pair4,.input-pair5,.input-pair6 {
     display: flex;
     justify-content: center;
     margin-bottom: 15px;
 }
 
-.input-pair input,.input-pair3 input,.input-pair4 input ,.input-pair5 input {
+.input-pair input,.input-pair3 input,.input-pair4 input ,.input-pair5 input,.input-pair6 input {
     flex: 1;
     padding: 10px;
     margin: 0 5px;
@@ -387,35 +392,173 @@ th{
     border-radius: 10px;
 }
 
-.input-group,.input-group3,.input-group4 ,.input-group5 {
+.input-group,.input-group3,.input-group4 ,.input-group5,.input-group6 {
     width: 100%; /* Largeur fixe raisonnable */
     max-width: 100%; /* Pour le responsive */
     text-align: center;
 }
 
-.input-group label,.input-group3 label,.input-group4 label,.input-group5 label {
+.input-group label,.input-group3 label,.input-group4 label,.input-group5 label,.input-group6 label {
     display: block;
     margin-bottom: 5px;
     font-size: 0.9em;
     color: black;
 }
 
-.input-group input,.input-group3 input,.input-group4 input,.input-group5 input {
+.input-group input,.input-group3 input,.input-group4 input,.input-group5 input,.input-group6 input {
     width: 80%;
 }
 
 /* Centrage spécifique pour le premier input */
-.input-container1:first-child .input-group ,.input-container3:first-child .input-group3,.input-container4:first-child .input-group4,.input-container5:first-child .input-group5 {
+.input-container1:first-child .input-group ,.input-container3:first-child .input-group3,
+.input-container4:first-child .input-group4,.input-container5:first-child .input-group5,.input-container6:first-child .input-group6 {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.input-container1:first-child .input-group input,.input-container3:first-child .input-group3 input,.input-container4:first-child .input-group4 input ,.input-container5:first-child .input-group5 input {
+.input-container1:first-child .input-group input,.input-container3:first-child .input-group3 input,
+.input-container4:first-child .input-group4 input ,.input-container5:first-child .input-group5 input,.input-container6:first-child .input-group6 input {
     width: 60%; /* Largeur réduite pour le premier input */
 }
 
 /* Suppression des styles spécifiques au premier div */
-.input-container1:first-child .input-pair,.input-container3:first-child .input-pair3,.input-container4:first-child .input-pair4,.input-container5:first-child .input-pair5 {
+.input-container1:first-child .input-pair,.input-container3:first-child .input-pair3,
+.input-container4:first-child .input-pair4,.input-container5:first-child .input-pair5,.input-container6:first-child .input-pair6 {
     all: unset;
+}
+
+
+
+
+/*cascade pour le telechargement de l'image*/
+.input-container7 {
+    background-color: #DCC9C2;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.input-group7 {
+    margin-bottom: 15px;
+}
+
+.input-group7 p {
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+}
+
+#imageUpload {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.submit-btn7 {
+    background-color: #F96A24;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.submit-btn7:hover {
+    background-color: #F96A24;
+}
+
+#imagePreview img {
+    border-radius: 4px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+}
+
+/* Style du tableau */
+.table-container {
+    overflow-x: auto;
+    margin: 20px;
+}
+
+.table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.table-container th,
+.table-container td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.table-container th {
+    background-color: #f5f5f5;
+    font-weight: 600;
+}
+
+.table-container tr:hover {
+    background-color: #f9f9f9;
+}
+
+
+
+
+/* Style pour le champ de description */
+#imageDescription {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Style pour les images miniatures dans le tableau */
+.table-container img {
+    max-width: 80px;
+    max-height: 60px;
+    border-radius: 4px;
+    border: 1px solid #eee;
+}
+
+/* Style pour les cellules du tableau */
+.table-container td {
+    vertical-align: middle;
+    padding: 10px;
+}
+
+/* Style pour le bouton de suppression */
+.delete-btn {
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.delete-btn:hover {
+    background-color: #cc0000;
+}
+
+/* Style pour la prévisualisation de l'image */
+#imagePreview {
+    margin: 10px 0;
+}
+
+#imagePreview img {
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
 }

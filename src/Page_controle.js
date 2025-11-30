@@ -2,6 +2,8 @@ import { initializeApp } from "firebase/app";
 
 import { getFirestore,doc,collection,query,getDocs,where,deleteDoc,updateDoc,addDoc } from "firebase/firestore";
 
+import { getStorage,uploadBytes,ref ,getDownloadURL,deleteObject} from "firebase/storage";
+
 import emailjs from 'emailjs-com';
 
 const firebaseConfig = {
@@ -417,6 +419,37 @@ const firebaseConfig = {
 
 
 
+                //Bouton accepter et annuler pour les notifications
+        document.querySelector('.close-btn6').addEventListener('click', () => {
+        document.getElementById('resultPopup6').style.display = 'none';
+    });
+    document.getElementById('confirmSubmit6').addEventListener('click', () => {
+          const formData = {
+            message: document.getElementById('message').value,
+        };
+        const messagenotification = `Information importante :\n${formData.message}`
+        ajouterMessageUtilisateursAgence("NG_TICKET","ngtickettopic",messagenotification)
+        
+            const docRefnotification= collection(db,"CONTROLE");
+        const sousRefnotification1 = doc(docRefnotification,"MESSAGE_NOTIFICATION");
+        const finalRefnotification2 = collection(sousRefnotification1,"NG_TICKET");
+        
+        addDoc(finalRefnotification2,{
+            message : formData.message,
+            nomagence : "NG_TICKET",
+            topicagence : "ngtickettopic",
+        }).then(() => 
+            document.querySelectorAll('input').forEach(input => {
+                input.value = '';
+            })); 
+        document.getElementById('resultPopup6').style.display = 'none';
+        setTimeout(function() {
+                        location.reload(true);
+                      }, 5000);
+    });
+
+
+
 
 
 
@@ -781,6 +814,73 @@ const firebaseConfig = {
 
 
 
+                    //affichage et suppression des notifications
+                    const notificationRef = collection(db,"CONTROLE");
+                    const notificationfirst = doc(notificationRef,"MESSAGE_NOTIFICATION");
+                    const notificationsecond = collection(notificationfirst,"NG_TICKET");
+                
+                    getDocs(notificationsecond).then((querySnapshot) => {
+                      
+                      const tbody_7 =document.getElementById("tbody_7");
+                      querySnapshot.forEach((docte) =>{
+              
+                        const docnotifications = docte.id;
+                
+                        const tr = document.createElement("tr");
+                
+                        const tdnomagence = document.createElement("td");
+                        const tdmessage = document.createElement("td");
+                        const tdactionnotifications = document.createElement("td");
+                
+                        tdnomagence.textContent = docte.data().nomagence;
+                        tdmessage.textContent = docte.data().message;
+              
+                        const bouton_supnotifications = document.createElement("button");
+                        bouton_supnotifications.textContent = "Supprimer";
+                        bouton_supnotifications.style.width= "80px";
+                        bouton_supnotifications.style.fontWeight="bold";
+                        bouton_supnotifications.style.borderRadius= "10px";
+                        bouton_supnotifications.style.color="black";
+                        bouton_supnotifications.style.backgroundColor= "#E8E8E8";
+                        bouton_supnotifications.style.boxShadow="3px 3px 3px  #e4e2de";
+              
+              
+                
+                        tr.appendChild(tdnomagence);
+                        tr.appendChild(tdmessage);
+                        tr.appendChild(bouton_supnotifications);
+                
+                        tbody_7.appendChild(tr);
+              
+                        bouton_supnotifications.addEventListener('click', function() {
+                          document.getElementById('dialog7').style.display = 'block';
+              
+                          document.getElementById('annuler7').addEventListener('click', function() {
+                            document.getElementById('dialog7').style.display = 'none';
+                          });
+                          
+                          document.getElementById('acceder7').addEventListener('click', function() {
+                            
+                          const notificationsup = doc(notificationsecond,docnotifications);
+                          deleteDoc(notificationsup).then(()=>{ 
+                          });  
+                        
+                            document.getElementById('dialog7').style.display = 'none';
+                                                  setTimeout(function() {
+                                      location.reload(true);
+                                    }, 3000);
+                            
+                          });
+              
+                        });
+                        
+                      });
+                    });
+
+
+
+
+
 
               
 
@@ -1037,3 +1137,363 @@ document.getElementById('submitBtn5').addEventListener('click', () => {
     });
     displayResults5(results);
 });
+
+
+
+//Cinquieme champ pour envoi des notifications
+function displayResults6(results) {
+        const resultContent6 = document.getElementById('resultContent6');
+        resultContent6.innerHTML = '';
+        if(results.length === 0) {
+
+            resultContent6.innerHTML = '<p>Aucune information à afficher</p>';
+            document.getElementById('confirmSubmit6').style.display="none";
+           document.getElementById('confirmSubmit6').style.display="none";
+        }else{
+            results.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'result-item';
+                itemDiv.innerHTML = `<h4>${item.title}</h4>`;
+                
+                item.values.forEach(detail => {
+                    itemDiv.innerHTML += `<p><strong>${detail.label}:</strong> ${detail.value}</p>`;
+                });
+                
+                resultContent6.appendChild(itemDiv);
+            });
+        }
+        
+        document.getElementById('resultPopup6').style.display = 'flex';
+    }
+document.querySelectorAll('.category1 input').forEach(input => {
+input.addEventListener('focus', function() {
+this.style.borderColor = '#F96A24';
+});
+
+input.addEventListener('blur', function() {
+this.style.borderColor = '#DCC9C2';
+});
+});
+
+
+
+document.getElementById('submitBtn6').addEventListener('click', () => {
+    const results = [];
+    
+    document.querySelectorAll('.input-container6').forEach(container => {
+        const title = container.querySelector('p').textContent;
+        const details = {
+            title,
+            values: []
+        };
+        
+        container.querySelectorAll('.input-group6').forEach(group => {
+            const label = group.querySelector('p').textContent;
+            const field = group.querySelector('input, textarea, select'); // Prend tous les types de champs
+            if(field?.value) {
+                details.values.push({
+                    label,
+                    value: field.value
+                });
+            }
+        });
+        
+        if(details.values.length > 0) results.push(details);
+    });
+    displayResults6(results);
+});
+
+
+
+
+
+
+
+//code pour envoyer les notifications a tous les utilisateurs
+
+async function ajouterMessageUtilisateursAgence(nomAgence, topicAgence, message) {
+    let messagesEnvoyes = 0;
+    
+    try {
+        console.log(`Début du parcours des utilisateurs pour l'agence: ${nomAgence}`);
+        
+        // 1. Parcourir tous les utilisateurs dans CONTROLE -> UTILISATEUR -> NG_TICKET
+        const controleRef1 = collection(db, "CONTROLE");
+        const controleRef2 = doc(controleRef1, "UTILISATEUR");
+        const controleRef3 = collection(controleRef2, "NG_TICKET");
+        
+        console.log("Référence de la collection:", controleRef3);
+        
+        const utilisateursSnapshot = await getDocs(controleRef3);
+        
+        // Vérification plus robuste
+        if (!utilisateursSnapshot || utilisateursSnapshot.empty || !utilisateursSnapshot.docs) {
+            console.log('Aucun utilisateur trouvé dans NG_TICKET ou snapshot invalide');
+            return 0;
+        }
+        
+        const utilisateursDocs = utilisateursSnapshot.docs;
+        console.log(`Trouvé ${utilisateursDocs.length} utilisateurs à vérifier`);
+        
+        // 2. Pour chaque utilisateur, vérifier ses agences abonnées
+        const promises = utilisateursDocs.map(async (userDoc) => {
+            console.log("Traitement du document:", userDoc.id);
+            
+            const userData = userDoc.data();
+            const uidUser = userData.uiduser;
+            
+            if (!uidUser) {
+                console.log(`Utilisateur ${userDoc.id} n'a pas de uiduser`);
+                return false;
+            }
+            
+            console.log(`Vérification de l'utilisateur: ${uidUser}`);
+            
+            try {
+                // 3. Accéder aux agences abonnées de l'utilisateur
+                const agencesRef1 = collection(db, "UTILISATEUR");
+                const agencesRef2 = doc(agencesRef1, uidUser);
+                const agencesRef3 = collection(agencesRef2, "AGENCES_ABONNES");
+                const agencesSnapshot = await getDocs(agencesRef3);
+                
+                if (!agencesSnapshot || agencesSnapshot.empty) {
+                    console.log(`L'utilisateur ${uidUser} n'a aucune agence abonnée`);
+                    return false;
+                }
+                
+                // 4. Vérifier si l'agence spécifiée existe
+                let hasTargetAgency = false;
+                agencesSnapshot.forEach((agenceDoc) => {
+                    const agenceData = agenceDoc.data();
+                    console.log("Agence trouvée:", agenceData);
+                    if (agenceData.nomagence === nomAgence && agenceData.topicagence === topicAgence) {
+                        hasTargetAgency = true;
+                    }
+                });
+                
+                if (hasTargetAgency) {
+                    console.log(`L'utilisateur ${uidUser} est abonné à l'agence ${nomAgence}`);
+                    
+                    // 5. Ajouter le message dans la collection MESSAGE
+                    const messageRef1 = collection(db, "UTILISATEUR");
+                    const messageRef2 = doc(messageRef1, uidUser);
+                    const messageRef3 = collection(messageRef2, "MESSAGE");
+                    await addDoc(messageRef3, {
+                        message: message,
+                        nomagence: nomAgence
+                    });
+                    
+                    console.log(`Message ajouté pour l'utilisateur ${uidUser}`);
+                    return true;
+                } else {
+                    console.log(`L'utilisateur ${uidUser} n'est pas abonné à l'agence ${nomAgence}`);
+                    return false;
+                }
+                
+            } catch (error) {
+                console.error(`Erreur lors du traitement de l'utilisateur ${uidUser}:`, error);
+                return false;
+            }
+        });
+        
+        // Attendre que tous les traitements soient terminés
+        const results = await Promise.all(promises);
+        messagesEnvoyes = results.filter(result => result === true).length;
+        
+        console.log(`Traitement terminé! ${messagesEnvoyes} messages envoyés sur ${utilisateursDocs.length} utilisateurs vérifiés`);
+        return messagesEnvoyes;
+        
+    } catch (error) {
+        console.error('Erreur générale lors du traitement:', error);
+        return 0;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+//code java pour telecharger l'image et les stockes des firestore
+
+// Initialisation de Firebase Storage
+const storage = getStorage(app);
+
+// Référence à l'élément d'aperçu
+const imagePreview = document.getElementById('imagePreview');
+const imageUpload = document.getElementById('imageUpload');
+const uploadBtn = document.getElementById('uploadBtn');
+
+// Aperçu de l'image sélectionnée
+imageUpload.addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            imagePreview.innerHTML = `<img src="${e.target.result}" style="max-width: 200px; max-height: 200px;"/>`;
+        };
+        reader.readAsDataURL(file);
+    }
+});
+
+// Gestion du téléchargement
+uploadBtn.addEventListener('click', async function() {
+    const file = imageUpload.files[0];
+    const description = document.getElementById('imageDescription').value.trim();
+    
+    if (!file) {
+        alert('Veuillez sélectionner une image');
+        return;
+    }
+
+    // Créer une référence de stockage
+    const storageRef = ref(storage, 'images/' + file.name);
+    
+    try {
+        // Télécharger le fichier
+        const snapshot = await uploadBytes(storageRef, file);
+        console.log('Fichier téléchargé avec succès!');
+        
+        // Obtenir l'URL de téléchargement
+        const downloadURL = await getDownloadURL(snapshot.ref);
+        
+        // Enregistrer les métadonnées dans Firestore
+        const imageData = {
+            url: downloadURL,
+            name: file.name,
+            description: description || 'Aucune description', // Ajout de la description
+            size: file.size,
+            type: file.type,
+            uploadedAt: new Date().toISOString()
+        };
+
+        // Ajouter le document à la collection
+        await addDoc(collection(db, "CONTROLE", "IMAGES", "NG_TICKET"), imageData);
+        
+        // Réinitialiser le formulaire
+        imageUpload.value = '';
+        document.getElementById('imageDescription').value = '';
+        imagePreview.innerHTML = '';
+        
+        // Recharger la liste des images
+        loadImages();
+        
+        alert('Image téléchargée et enregistrée avec succès!');
+        
+        setTimeout(function() {
+            location.reload(true);
+        }, 3000);
+    } catch (error) {
+        console.error('Erreur lors du téléchargement:', error);
+        alert('Erreur lors du téléchargement: ' + error.message);
+    }
+});
+
+
+
+
+
+
+//Code pour afficher les images et les supprimer
+// Fonction pour formater la taille du fichier
+function formatFileSize(bytes) {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+}
+
+// Fonction pour charger et afficher les images
+async function loadImages() {
+    const imageList = document.getElementById('imageList');
+    imageList.innerHTML = '<tr><td colspan="6">Chargement en cours...</td></tr>';
+
+    try {
+        const imagesRef = collection(db, "CONTROLE", "IMAGES", "NG_TICKET");
+        const querySnapshot = await getDocs(imagesRef);
+        
+        if (querySnapshot.empty) {
+            imageList.innerHTML = '<tr><td colspan="6">Aucune image enregistrée</td></tr>';
+            return;
+        }
+
+        imageList.innerHTML = '';
+        querySnapshot.forEach((doc) => {
+            const imageData = doc.data();
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>
+                    ${imageData.url ? 
+                        `<img src="${imageData.url}" alt="Miniature" 
+                              style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">` 
+                        : 'Aucune image'}
+                </td>
+                <td>${imageData.name || 'Sans nom'}</td>
+                <td>${imageData.description || 'Aucune description'}</td>
+                <td>${imageData.uploadedAt ? new Date(imageData.uploadedAt).toLocaleString() : 'Date inconnue'}</td>
+                <td>${imageData.size ? formatFileSize(imageData.size) : 'Taille inconnue'}</td>
+                <td>
+                    <button class="delete-btn" data-id="${doc.id}" data-name="${imageData.name || ''}">
+                        Supprimer
+                    </button>
+                </td>
+            `;
+            imageList.appendChild(row);
+        });
+
+        // Ajouter les gestionnaires d'événements pour les boutons de suppression
+        document.querySelectorAll('.delete-btn').forEach(button => {
+            button.addEventListener('click', deleteImage);
+        });
+
+    } catch (error) {
+        console.error("Erreur lors du chargement des images:", error);
+        imageList.innerHTML = '<tr><td colspan="6">Erreur lors du chargement des images</td></tr>';
+    }
+}
+
+// Fonction pour supprimer une image
+async function deleteImage(e) {
+    const button = e.currentTarget;
+    const imageId = button.getAttribute('data-id');
+    const imageName = button.getAttribute('data-name');
+    
+    if (!confirm(`Êtes-vous sûr de vouloir supprimer l'image "${imageName}" ?`)) {
+        return;
+    }
+
+    try {
+        // Supprimer l'entrée dans Firestore
+        await deleteDoc(doc(db, "CONTROLE", "IMAGES", "NG_TICKET", imageId));
+        
+        // Optionnel : supprimer le fichier du stockage
+        if (imageName) {
+            const storageRef = ref(storage, `images/${imageName}`);
+            try {
+                await deleteObject(storageRef);
+            } catch (storageError) {
+                console.warn("Impossible de supprimer le fichier du stockage:", storageError);
+            }
+        }
+        
+        // Recharger la liste
+        loadImages();
+        alert('Image supprimée avec succès !');
+    } catch (error) {
+        console.error("Erreur lors de la suppression:", error);
+        alert('Erreur lors de la suppression de l\'image: ' + error.message);
+    }
+}
+
+// Appeler loadImages au chargement de la page
+document.addEventListener('DOMContentLoaded', loadImages);
+
+
+

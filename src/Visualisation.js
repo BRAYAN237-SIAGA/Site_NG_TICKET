@@ -1715,3 +1715,98 @@ auth.onAuthStateChanged(user =>{
 });
 
 
+
+
+
+//javascript pour afficher et supprimer les messages de notifications
+   auth.onAuthStateChanged(user =>{
+      if(user){
+          const uid = user.uid;
+          const infoRef =collection(db,"AGENCES");
+          const final = doc(infoRef,uid);
+          const but = collection(final,"INFORMATION");
+     getDocs(but).then(querySnapshot =>{
+      querySnapshot.forEach(doct =>{
+          const info = doct.data();
+
+          if(info.status == "valider"){
+          const notificationRef = collection(db,"AGENCES");
+          const notificationfirst = doc(notificationRef,uid);
+          const notificationsecond = collection(notificationfirst,info.agence);
+          const notificationthird = doc(notificationsecond,"NOTIFICATION");
+          const notificationsend = collection(notificationthird,"NG_TICKET");
+      
+          getDocs(notificationsend).then((querySnapshot) => {
+            
+            const tbody_8 =document.getElementById("tbody_8");
+            querySnapshot.forEach((docte) =>{
+              const docnotification = docte.id;
+      
+              const tr = document.createElement("tr");
+      
+              const tdnomagence = document.createElement("td");
+              const tdmessage = document.createElement("td");
+              const tdactionnotification = document.createElement("td");
+      
+              tdnomagence.textContent = docte.data().nomagence;
+              tdmessage.textContent = docte.data().message;
+
+              const bouton_supnotification = document.createElement("button");
+              bouton_supnotification.textContent = "Supprimer";
+              bouton_supnotification.style.width= "80px";
+              bouton_supnotification.style.borderRadius= "10px";
+              bouton_supnotification.style.fontWeight="bold";
+              bouton_supnotification.style.color="black";
+              bouton_supnotification.style.backgroundColor= "#E8E8E8";
+              bouton_supnotification.style.boxShadow="3px 3px 3px  #e4e2de";
+
+              
+          
+      
+              tr.appendChild(tdnomagence);
+              tr.appendChild(tdmessage);
+              tr.appendChild(bouton_supnotification);
+      
+              tbody_8.appendChild(tr);
+
+              
+              bouton_supnotification.addEventListener('click', function() {
+                document.getElementById('dialog7').style.display = 'block';
+
+                  
+              document.getElementById('annuler7').addEventListener('click', function() {
+                document.getElementById('dialog7').style.display = 'none';
+              });
+              
+              document.getElementById('acceder7').addEventListener('click', function() {
+                const notificationsup = doc(notificationsend,docnotification);
+                deleteDoc(notificationsup).then(()=>{
+      
+                }); 
+                document.getElementById('dialog7').style.display = 'none';
+                                      setTimeout(function() {
+                        location.reload(true);
+                      }, 3000);
+              });
+
+              });
+                 
+            });
+          });
+          }else if(info.status == "invalider"){
+            document.getElementById("nom").innerHTML = "";
+
+          }
+  
+
+  
+      });
+     }).catch(error =>{
+      console.log('Aucune utilisateur connecte ',error);
+     });
+      }else{
+          console.log('Aucun utilisateur connecte');
+      }
+  });
+
+

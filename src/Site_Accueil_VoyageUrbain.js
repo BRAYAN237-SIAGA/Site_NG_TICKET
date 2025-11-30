@@ -924,7 +924,7 @@ const firebaseConfig = {
 
 
 
-
+//bouton pour faire entrer les bus en ligne
                     document.getElementById("nom").innerHTML = info.agence;
 
                     
@@ -954,8 +954,8 @@ const firebaseConfig = {
                             numerobus: document.getElementById('numerobus').value,
                         };
 
-
-
+                        const messagenotification = `Nouveau bus ajouté :\nBus n°: ${formData.numerobus}\nCatégorie: ${formData.categorie}\nDépart: ${formData.ville_depart} (${formData.quartier_depart})\nArrivée: ${formData.ville_arriver} (${formData.quartier_arriver})`
+                        ajouterMessageUtilisateursAgence(info.agence,uid,messagenotification)
 
                         const docRef = collection(db,"AGENCES");
                         const sousRef = doc(docRef,uid);
@@ -1092,6 +1092,121 @@ document.getElementById('submitBtn').addEventListener('click', () => {
     });
     displayResults(results);
 });
+
+
+
+
+
+
+
+//code pour envoyer les notifications a tous les utilisateurs
+
+async function ajouterMessageUtilisateursAgence(nomAgence, topicAgence, message) {
+    let messagesEnvoyes = 0;
+    
+    try {
+        console.log(`Début du parcours des utilisateurs pour l'agence: ${nomAgence}`);
+        
+        // 1. Parcourir tous les utilisateurs dans CONTROLE -> UTILISATEUR -> NG_TICKET
+        const controleRef1 = collection(db, "CONTROLE");
+        const controleRef2 = doc(controleRef1, "UTILISATEUR");
+        const controleRef3 = collection(controleRef2, "NG_TICKET");
+        
+        console.log("Référence de la collection:", controleRef3);
+        
+        const utilisateursSnapshot = await getDocs(controleRef3);
+        
+        // Vérification plus robuste
+        if (!utilisateursSnapshot || utilisateursSnapshot.empty || !utilisateursSnapshot.docs) {
+            console.log('Aucun utilisateur trouvé dans NG_TICKET ou snapshot invalide');
+            return 0;
+        }
+        
+        const utilisateursDocs = utilisateursSnapshot.docs;
+        console.log(`Trouvé ${utilisateursDocs.length} utilisateurs à vérifier`);
+        
+        // 2. Pour chaque utilisateur, vérifier ses agences abonnées
+        const promises = utilisateursDocs.map(async (userDoc) => {
+            console.log("Traitement du document:", userDoc.id);
+            
+            const userData = userDoc.data();
+            const uidUser = userData.uiduser;
+            
+            if (!uidUser) {
+                console.log(`Utilisateur ${userDoc.id} n'a pas de uiduser`);
+                return false;
+            }
+            
+            console.log(`Vérification de l'utilisateur: ${uidUser}`);
+            
+            try {
+                // 3. Accéder aux agences abonnées de l'utilisateur
+                const agencesRef1 = collection(db, "UTILISATEUR");
+                const agencesRef2 = doc(agencesRef1, uidUser);
+                const agencesRef3 = collection(agencesRef2, "AGENCES_ABONNES");
+                const agencesSnapshot = await getDocs(agencesRef3);
+                
+                if (!agencesSnapshot || agencesSnapshot.empty) {
+                    console.log(`L'utilisateur ${uidUser} n'a aucune agence abonnée`);
+                    return false;
+                }
+                
+                // 4. Vérifier si l'agence spécifiée existe
+                let hasTargetAgency = false;
+                agencesSnapshot.forEach((agenceDoc) => {
+                    const agenceData = agenceDoc.data();
+                    console.log("Agence trouvée:", agenceData);
+                    if (agenceData.nomagence === nomAgence && agenceData.topicagence === topicAgence) {
+                        hasTargetAgency = true;
+                    }
+                });
+                
+                if (hasTargetAgency) {
+                    console.log(`L'utilisateur ${uidUser} est abonné à l'agence ${nomAgence}`);
+                    
+                    // 5. Ajouter le message dans la collection MESSAGE
+                    const messageRef1 = collection(db, "UTILISATEUR");
+                    const messageRef2 = doc(messageRef1, uidUser);
+                    const messageRef3 = collection(messageRef2, "MESSAGE");
+                    await addDoc(messageRef3, {
+                        message: message,
+                        nomagence: nomAgence
+                    });
+                    
+                    console.log(`Message ajouté pour l'utilisateur ${uidUser}`);
+                    return true;
+                } else {
+                    console.log(`L'utilisateur ${uidUser} n'est pas abonné à l'agence ${nomAgence}`);
+                    return false;
+                }
+                
+            } catch (error) {
+                console.error(`Erreur lors du traitement de l'utilisateur ${uidUser}:`, error);
+                return false;
+            }
+        });
+        
+        // Attendre que tous les traitements soient terminés
+        const results = await Promise.all(promises);
+        messagesEnvoyes = results.filter(result => result === true).length;
+        
+        console.log(`Traitement terminé! ${messagesEnvoyes} messages envoyés sur ${utilisateursDocs.length} utilisateurs vérifiés`);
+        return messagesEnvoyes;
+        
+    } catch (error) {
+        console.error('Erreur générale lors du traitement:', error);
+        return 0;
+    }
+}
+
+
+
+
+
+
+
+
+
 
                     }else if(info.status == "invalider"){
                     document.getElementById("nom").innerHTML = "";

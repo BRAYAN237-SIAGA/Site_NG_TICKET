@@ -12,31 +12,10 @@ module.exports ={
 };
 module.exports ={
     mode : "development",
-    entry : "./src/Site_admin.js",
-    output:{
-        path : path.resolve(__dirname,"dist"),
-        filename : "bunble_Site_admin.js"
-    },
-    devtool : "eval-cheap-source-map",
-    watch:true,
-};
-module.exports ={
-    mode : "development",
     entry : "./src/Page_securite.js",
     output:{
         path : path.resolve(__dirname,"dist"),
         filename : "bunble_Page_securite.js"
-    },
-    devtool : "eval-cheap-source-map",
-    watch:true,
-};
-
-module.exports ={
-    mode : "development",
-    entry : "./src/Message$Commentaire.js",
-    output:{
-        path : path.resolve(__dirname,"dist"),
-        filename : "bunble_Message$Commentaire.js"
     },
     devtool : "eval-cheap-source-map",
     watch:true,
@@ -66,16 +45,6 @@ module.exports ={
 
 module.exports ={
     mode : "development",
-    entry : "./src/Site_Accueil_VoyageUrbain.js",
-    output:{
-        path : path.resolve(__dirname,"dist"),
-        filename : "bunble_Site_Accueil_VoyageUrbain.js"
-    },
-    devtool : "eval-cheap-source-map",
-    watch:true,
-};
-module.exports ={
-    mode : "development",
     entry : "./src/tracabilite.js",
     output:{
         path : path.resolve(__dirname,"dist"),
@@ -95,12 +64,46 @@ module.exports ={
     watch:true,
 };
 
+
 module.exports ={
     mode : "development",
     entry : "./src/Visualisation.js",
     output:{
         path : path.resolve(__dirname,"dist"),
         filename : "bunble_Visualisation.js"
+    },
+    devtool : "eval-cheap-source-map",
+    watch:true,
+};
+
+module.exports ={
+    mode : "development",
+    entry : "./src/Site_admin.js",
+    output:{
+        path : path.resolve(__dirname,"dist"),
+        filename : "bunble_Site_admin.js"
+    },
+    devtool : "eval-cheap-source-map",
+    watch:true,
+};
+
+module.exports ={
+    mode : "development",
+    entry : "./src/Message$Commentaire.js",
+    output:{
+        path : path.resolve(__dirname,"dist"),
+        filename : "bunble_Message$Commentaire.js"
+    },
+    devtool : "eval-cheap-source-map",
+    watch:true,
+};
+
+module.exports ={
+    mode : "development",
+    entry : "./src/Site_Accueil_VoyageUrbain.js",
+    output:{
+        path : path.resolve(__dirname,"dist"),
+        filename : "bunble_Site_Accueil_VoyageUrbain.js"
     },
     devtool : "eval-cheap-source-map",
     watch:true,

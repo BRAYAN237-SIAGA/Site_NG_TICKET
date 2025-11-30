@@ -19,8 +19,6 @@ const firebaseConfig = {
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    const envoyer_message = document.getElementById("div_message");
-    const envoyer_commentaire = document.getElementById("div_commentaire");
     const auth = getAuth(app);
     auth.onAuthStateChanged(user =>{
         if(user){
@@ -36,6 +34,54 @@ const firebaseConfig = {
                     if(info.status == "valider"){
 
                     document.getElementById("nom").innerHTML = info.agence;
+
+                                    //Bouton accepter et annuler pour les notifications
+                            document.querySelector('.close-btn6').addEventListener('click', () => {
+                            document.getElementById('resultPopup6').style.display = 'none';
+                        });
+                        document.getElementById('confirmSubmit6').addEventListener('click', () => {
+                              const formData = {
+                                notification: document.getElementById('notification').value,
+                            };
+
+                            //fonction pour envoyer les notifications aux utilisateur
+                            const messagenotification = `Information importante :\n${formData.notification}`
+                            ajouterMessageUtilisateursAgence(info.agence,uid,messagenotification)
+
+
+                            const docRefnotificationagence= collection(db,"AGENCES");
+                            const sousRefnotificationagence1 = doc(docRefnotificationagence,uid);
+                            const finalRefnotificationagence2 = collection(sousRefnotificationagence1,info.agence);
+                            const sousRefnotificationagence3 = doc(finalRefnotificationagence2,"NOTIFICATION");
+                            const finalRefnotificationagence4 = collection(sousRefnotificationagence3,"NG_TICKET");
+                            
+                            const docRefnotification= collection(db,"CONTROLE");
+                            const sousRefnotification1 = doc(docRefnotification,"MESSAGE_NOTIFICATION");
+                            const finalRefnotification2 = collection(sousRefnotification1,"NG_TICKET");
+
+                            addDoc(finalRefnotification2,{
+                                message : formData.notification,
+                                nomagence : info.agence,
+                                topicagence : uid,
+                            }).then();
+                            
+                            addDoc(finalRefnotificationagence4,{
+                                message : formData.notification,
+                                nomagence : info.agence,
+                                topicagence : uid,
+                            }).then(() => 
+                                document.querySelectorAll('input').forEach(input => {
+                                    input.value = '';
+                                })); 
+                            document.getElementById('resultPopup6').style.display = 'none';
+                                    setTimeout(function() {
+                        location.reload(true);
+                      }, 5000);
+                        });
+
+
+
+
 
                     document.querySelectorAll('.send-btn').forEach(btn => {
                     btn.addEventListener('click', function() {
@@ -105,6 +151,9 @@ const firebaseConfig = {
                     });
                     });
 
+
+
+
                         // Gestion des boutons d'envoi de message
 document.querySelectorAll('.send-btn').forEach(btn => {
     btn.addEventListener('click', function() {
@@ -132,6 +181,182 @@ document.querySelectorAll('.send-btn2').forEach(btn => {
         }
     });
 });
+
+
+//Cinquieme champ pour envoi des notifications
+function displayResults6(results) {
+        const resultContent6 = document.getElementById('resultContent6');
+        resultContent6.innerHTML = '';
+        if(results.length === 0) {
+
+            resultContent6.innerHTML = '<p>Aucune information à afficher</p>';
+            document.getElementById('confirmSubmit6').style.display="none";
+           document.getElementById('confirmSubmit6').style.display="none";
+        }else{
+            results.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'result-item';
+                itemDiv.innerHTML = `<h4>${item.title}</h4>`;
+                
+                item.values.forEach(detail => {
+                    itemDiv.innerHTML += `<p><strong>${detail.label}:</strong> ${detail.value}</p>`;
+                });
+                
+                resultContent6.appendChild(itemDiv);
+            });
+        }
+        
+        document.getElementById('resultPopup6').style.display = 'flex';
+    }
+document.querySelectorAll('.category1 input').forEach(input => {
+input.addEventListener('focus', function() {
+this.style.borderColor = '#F96A24';
+});
+
+input.addEventListener('blur', function() {
+this.style.borderColor = '#DCC9C2';
+});
+});
+
+
+
+document.getElementById('submitBtn6').addEventListener('click', () => {
+    const results = [];
+    
+    document.querySelectorAll('.input-container6').forEach(container => {
+        const title = container.querySelector('p').textContent;
+        const details = {
+            title,
+            values: []
+        };
+        
+        container.querySelectorAll('.input-group6').forEach(group => {
+            const label = group.querySelector('p').textContent;
+            const field = group.querySelector('input, textarea, select'); // Prend tous les types de champs
+            if(field?.value) {
+                details.values.push({
+                    label,
+                    value: field.value
+                });
+            }
+        });
+        
+        if(details.values.length > 0) results.push(details);
+    });
+    displayResults6(results);
+});
+
+
+
+
+
+
+
+
+
+
+async function ajouterMessageUtilisateursAgence(nomAgence, topicAgence, message) {
+    let messagesEnvoyes = 0;
+    
+    try {
+        console.log(`Début du parcours des utilisateurs pour l'agence: ${nomAgence}`);
+        
+        // 1. Parcourir tous les utilisateurs dans CONTROLE -> UTILISATEUR -> NG_TICKET
+        const controleRef1 = collection(db, "CONTROLE");
+        const controleRef2 = doc(controleRef1, "UTILISATEUR");
+        const controleRef3 = collection(controleRef2, "NG_TICKET");
+        
+        console.log("Référence de la collection:", controleRef3);
+        
+        const utilisateursSnapshot = await getDocs(controleRef3);
+        
+        // Vérification plus robuste
+        if (!utilisateursSnapshot || utilisateursSnapshot.empty || !utilisateursSnapshot.docs) {
+            console.log('Aucun utilisateur trouvé dans NG_TICKET ou snapshot invalide');
+            return 0;
+        }
+        
+        const utilisateursDocs = utilisateursSnapshot.docs;
+        console.log(`Trouvé ${utilisateursDocs.length} utilisateurs à vérifier`);
+        
+        // 2. Pour chaque utilisateur, vérifier ses agences abonnées
+        const promises = utilisateursDocs.map(async (userDoc) => {
+            console.log("Traitement du document:", userDoc.id);
+            
+            const userData = userDoc.data();
+            const uidUser = userData.uiduser;
+            
+            if (!uidUser) {
+                console.log(`Utilisateur ${userDoc.id} n'a pas de uiduser`);
+                return false;
+            }
+            
+            console.log(`Vérification de l'utilisateur: ${uidUser}`);
+            
+            try {
+                // 3. Accéder aux agences abonnées de l'utilisateur
+                const agencesRef1 = collection(db, "UTILISATEUR");
+                const agencesRef2 = doc(agencesRef1, uidUser);
+                const agencesRef3 = collection(agencesRef2, "AGENCES_ABONNES");
+                const agencesSnapshot = await getDocs(agencesRef3);
+                
+                if (!agencesSnapshot || agencesSnapshot.empty) {
+                    console.log(`L'utilisateur ${uidUser} n'a aucune agence abonnée`);
+                    return false;
+                }
+                
+                // 4. Vérifier si l'agence spécifiée existe
+                let hasTargetAgency = false;
+                agencesSnapshot.forEach((agenceDoc) => {
+                    const agenceData = agenceDoc.data();
+                    console.log("Agence trouvée:", agenceData);
+                    if (agenceData.nomagence === nomAgence && agenceData.topicagence === topicAgence) {
+                        hasTargetAgency = true;
+                    }
+                });
+                
+                if (hasTargetAgency) {
+                    console.log(`L'utilisateur ${uidUser} est abonné à l'agence ${nomAgence}`);
+                    
+                    // 5. Ajouter le message dans la collection MESSAGE
+                    const messageRef1 = collection(db, "UTILISATEUR");
+                    const messageRef2 = doc(messageRef1, uidUser);
+                    const messageRef3 = collection(messageRef2, "MESSAGE");
+                    await addDoc(messageRef3, {
+                        message: message,
+                        nomagence: nomAgence
+                    });
+                    
+                    console.log(`Message ajouté pour l'utilisateur ${uidUser}`);
+                    return true;
+                } else {
+                    console.log(`L'utilisateur ${uidUser} n'est pas abonné à l'agence ${nomAgence}`);
+                    return false;
+                }
+                
+            } catch (error) {
+                console.error(`Erreur lors du traitement de l'utilisateur ${uidUser}:`, error);
+                return false;
+            }
+        });
+        
+        // Attendre que tous les traitements soient terminés
+        const results = await Promise.all(promises);
+        messagesEnvoyes = results.filter(result => result === true).length;
+        
+        console.log(`Traitement terminé! ${messagesEnvoyes} messages envoyés sur ${utilisateursDocs.length} utilisateurs vérifiés`);
+        return messagesEnvoyes;
+        
+    } catch (error) {
+        console.error('Erreur générale lors du traitement:', error);
+        return 0;
+    }
+}
+
+
+
+
+
 
                     }else if(info.status == "invalider"){
                         document.getElementById("nom").innerHTML = "";

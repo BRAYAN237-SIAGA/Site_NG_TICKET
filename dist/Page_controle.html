@@ -207,6 +207,76 @@
                 </table>
             </div>
         </div>
+                <!--entrer des notifications-->
+                <div class="input-container6" >
+                <p>Information 5</p>
+                <div class="input-pair6">
+                    <div class="input-group6">
+                        <p>NOTIFICATION</p>
+                        <input type="text" placeholder="Entrez votre notification" id="message">
+                    </div>
+                </div>
+                <div class="submit-container6">
+                    <button type="button" class="submit-btn6" id="submitBtn6">Enregistrer</button>
+                </div>
+            </div>
+
+        <div class="input-container1" >
+            <div class="table-container">
+                <h3>NOTIFICATIONS</h1>
+                <table>
+                <thead>
+                    <tr>
+                    <th>NG_TICKET</th>
+                    <th>Message</th>
+                    <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody_7">
+                </tbody>
+                </table>
+            </div>
+        </div>
+
+<div class="input-container7">
+    <p>Ajouter une image</p>
+    <div class="input-pair7">
+        <div class="input-group7">
+            <p>Sélectionner une image</p>
+            <input type="file" id="imageUpload" accept="image/*">
+            <div id="imagePreview" style="margin: 10px 0;"></div>
+            
+            <div style="margin-top: 15px;">
+                <label for="imageDescription">Description de l'image :</label>
+                <textarea id="imageDescription" rows="3" placeholder="Entrez une description pour cette image" 
+                         style="width: 100%; margin-top: 5px; padding: 8px; border: 1px solid #ddd; border-radius: 4px;" maxlength="100"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="submit-container7">
+        <button type="button" class="submit-btn7" id="uploadBtn">Télécharger l'image</button>
+    </div>
+  </div>
+    
+    <!-- Tableau des images existantes -->
+    <div class="table-container" style="margin-top: 30px;">
+        <h3>Images enregistrées</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Nom du fichier</th>
+                    <th>Description</th>
+                    <th>Date d'ajout</th>
+                    <th>Taille</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="imageList">
+                <!-- Les images seront ajoutées ici dynamiquement -->
+            </tbody>
+        </table>
+    </div>
 
 
         <!-- Popup de résultats -->
@@ -240,6 +310,14 @@
                 <div id="resultContent5"></div>
                 <button class="submit-btn5" id="confirmSubmit5">Envoyer</button>
                 <button class="close-btn5">Fermer</button>
+            </div>
+        </div>
+        <div id="resultPopup6" class="result-popup6">
+            <div class="popup-content6">
+                <h3>Résumé des informations</h3>
+                <div id="resultContent6"></div>
+                <button class="submit-btn6" id="confirmSubmit6">Envoyer</button>
+                <button class="close-btn6">Fermer</button>
             </div>
         </div>
             <!-- Popup de résultats -->
@@ -277,6 +355,11 @@
             <p>Etes vous sur de vouloir supprimer cette tarifications </p>
             <button id="annuler6" class="btn6">ANNULER</button>
             <button id="acceder6" class="btn6">VALIDER</button>
+            </div>
+            <div id="dialog7" class="dialog7">
+            <p>Etes vous sur de vouloir supprimer la notification </p>
+            <button id="annuler7" class="btn7">ANNULER</button>
+            <button id="acceder7" class="btn7">VALIDER</button>
             </div>
         </div>
     <script src="bunble_Page_controle.js" defer type="module"></script>
